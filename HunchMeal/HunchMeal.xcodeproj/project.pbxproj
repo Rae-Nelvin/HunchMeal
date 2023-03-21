@@ -7,61 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		159054D429C871820094CD52 /* HunchMealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159054D329C871820094CD52 /* HunchMealApp.swift */; };
-		159054D629C871820094CD52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159054D529C871820094CD52 /* ContentView.swift */; };
-		159054D829C871830094CD52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159054D729C871830094CD52 /* Assets.xcassets */; };
-		159054DB29C871830094CD52 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 159054DA29C871830094CD52 /* Preview Assets.xcassets */; };
-		159054E529C871830094CD52 /* HunchMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159054E429C871830094CD52 /* HunchMealTests.swift */; };
-		159054EF29C871830094CD52 /* HunchMealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159054EE29C871830094CD52 /* HunchMealUITests.swift */; };
-		159054F129C871830094CD52 /* HunchMealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159054F029C871830094CD52 /* HunchMealUITestsLaunchTests.swift */; };
+		154F87BC29C9B1E6000DB84F /* HunchMealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F87BB29C9B1E6000DB84F /* HunchMealApp.swift */; };
+		154F87BE29C9B1E6000DB84F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F87BD29C9B1E6000DB84F /* ContentView.swift */; };
+		154F87C029C9B1E6000DB84F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154F87BF29C9B1E6000DB84F /* Assets.xcassets */; };
+		154F87C329C9B1E6000DB84F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 154F87C229C9B1E6000DB84F /* Preview Assets.xcassets */; };
+		154F87C529C9B1E6000DB84F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F87C429C9B1E6000DB84F /* Persistence.swift */; };
+		154F87C829C9B1E6000DB84F /* HunchMeal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 154F87C629C9B1E6000DB84F /* HunchMeal.xcdatamodeld */; };
+		154F87D329C9B1E6000DB84F /* HunchMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F87D229C9B1E6000DB84F /* HunchMealTests.swift */; };
+		154F87DD29C9B1E6000DB84F /* HunchMealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F87DC29C9B1E6000DB84F /* HunchMealUITests.swift */; };
+		154F87DF29C9B1E6000DB84F /* HunchMealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154F87DE29C9B1E6000DB84F /* HunchMealUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		159054E129C871830094CD52 /* PBXContainerItemProxy */ = {
+		154F87CF29C9B1E6000DB84F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 159054C829C871820094CD52 /* Project object */;
+			containerPortal = 154F87B029C9B1E6000DB84F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 159054CF29C871820094CD52;
+			remoteGlobalIDString = 154F87B729C9B1E6000DB84F;
 			remoteInfo = HunchMeal;
 		};
-		159054EB29C871830094CD52 /* PBXContainerItemProxy */ = {
+		154F87D929C9B1E6000DB84F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 159054C829C871820094CD52 /* Project object */;
+			containerPortal = 154F87B029C9B1E6000DB84F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 159054CF29C871820094CD52;
+			remoteGlobalIDString = 154F87B729C9B1E6000DB84F;
 			remoteInfo = HunchMeal;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		159054D029C871820094CD52 /* HunchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HunchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		159054D329C871820094CD52 /* HunchMealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealApp.swift; sourceTree = "<group>"; };
-		159054D529C871820094CD52 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		159054D729C871830094CD52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		159054DA29C871830094CD52 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		159054E029C871830094CD52 /* HunchMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		159054E429C871830094CD52 /* HunchMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealTests.swift; sourceTree = "<group>"; };
-		159054EA29C871830094CD52 /* HunchMealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		159054EE29C871830094CD52 /* HunchMealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITests.swift; sourceTree = "<group>"; };
-		159054F029C871830094CD52 /* HunchMealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		154F87B829C9B1E6000DB84F /* HunchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HunchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		154F87BB29C9B1E6000DB84F /* HunchMealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealApp.swift; sourceTree = "<group>"; };
+		154F87BD29C9B1E6000DB84F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		154F87BF29C9B1E6000DB84F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		154F87C229C9B1E6000DB84F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		154F87C429C9B1E6000DB84F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		154F87C729C9B1E6000DB84F /* HunchMeal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HunchMeal.xcdatamodel; sourceTree = "<group>"; };
+		154F87C929C9B1E6000DB84F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		154F87CE29C9B1E6000DB84F /* HunchMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		154F87D229C9B1E6000DB84F /* HunchMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealTests.swift; sourceTree = "<group>"; };
+		154F87D829C9B1E6000DB84F /* HunchMealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		154F87DC29C9B1E6000DB84F /* HunchMealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITests.swift; sourceTree = "<group>"; };
+		154F87DE29C9B1E6000DB84F /* HunchMealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		159054CD29C871820094CD52 /* Frameworks */ = {
+		154F87B529C9B1E6000DB84F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		159054DD29C871830094CD52 /* Frameworks */ = {
+		154F87CB29C9B1E6000DB84F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		159054E729C871830094CD52 /* Frameworks */ = {
+		154F87D529C9B1E6000DB84F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,58 +76,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		159054C729C871820094CD52 = {
+		154F87AF29C9B1E6000DB84F = {
 			isa = PBXGroup;
 			children = (
-				159054D229C871820094CD52 /* HunchMeal */,
-				159054E329C871830094CD52 /* HunchMealTests */,
-				159054ED29C871830094CD52 /* HunchMealUITests */,
-				159054D129C871820094CD52 /* Products */,
+				154F87BA29C9B1E6000DB84F /* HunchMeal */,
+				154F87D129C9B1E6000DB84F /* HunchMealTests */,
+				154F87DB29C9B1E6000DB84F /* HunchMealUITests */,
+				154F87B929C9B1E6000DB84F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		159054D129C871820094CD52 /* Products */ = {
+		154F87B929C9B1E6000DB84F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				159054D029C871820094CD52 /* HunchMeal.app */,
-				159054E029C871830094CD52 /* HunchMealTests.xctest */,
-				159054EA29C871830094CD52 /* HunchMealUITests.xctest */,
+				154F87B829C9B1E6000DB84F /* HunchMeal.app */,
+				154F87CE29C9B1E6000DB84F /* HunchMealTests.xctest */,
+				154F87D829C9B1E6000DB84F /* HunchMealUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		159054D229C871820094CD52 /* HunchMeal */ = {
+		154F87BA29C9B1E6000DB84F /* HunchMeal */ = {
 			isa = PBXGroup;
 			children = (
-				159054D329C871820094CD52 /* HunchMealApp.swift */,
-				159054D529C871820094CD52 /* ContentView.swift */,
-				159054D729C871830094CD52 /* Assets.xcassets */,
-				159054D929C871830094CD52 /* Preview Content */,
+				154F87BB29C9B1E6000DB84F /* HunchMealApp.swift */,
+				154F87BD29C9B1E6000DB84F /* ContentView.swift */,
+				154F87BF29C9B1E6000DB84F /* Assets.xcassets */,
+				154F87C429C9B1E6000DB84F /* Persistence.swift */,
+				154F87C929C9B1E6000DB84F /* Info.plist */,
+				154F87C629C9B1E6000DB84F /* HunchMeal.xcdatamodeld */,
+				154F87C129C9B1E6000DB84F /* Preview Content */,
 			);
 			path = HunchMeal;
 			sourceTree = "<group>";
 		};
-		159054D929C871830094CD52 /* Preview Content */ = {
+		154F87C129C9B1E6000DB84F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				159054DA29C871830094CD52 /* Preview Assets.xcassets */,
+				154F87C229C9B1E6000DB84F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		159054E329C871830094CD52 /* HunchMealTests */ = {
+		154F87D129C9B1E6000DB84F /* HunchMealTests */ = {
 			isa = PBXGroup;
 			children = (
-				159054E429C871830094CD52 /* HunchMealTests.swift */,
+				154F87D229C9B1E6000DB84F /* HunchMealTests.swift */,
 			);
 			path = HunchMealTests;
 			sourceTree = "<group>";
 		};
-		159054ED29C871830094CD52 /* HunchMealUITests */ = {
+		154F87DB29C9B1E6000DB84F /* HunchMealUITests */ = {
 			isa = PBXGroup;
 			children = (
-				159054EE29C871830094CD52 /* HunchMealUITests.swift */,
-				159054F029C871830094CD52 /* HunchMealUITestsLaunchTests.swift */,
+				154F87DC29C9B1E6000DB84F /* HunchMealUITests.swift */,
+				154F87DE29C9B1E6000DB84F /* HunchMealUITestsLaunchTests.swift */,
 			);
 			path = HunchMealUITests;
 			sourceTree = "<group>";
@@ -130,13 +138,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		159054CF29C871820094CD52 /* HunchMeal */ = {
+		154F87B729C9B1E6000DB84F /* HunchMeal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 159054F429C871830094CD52 /* Build configuration list for PBXNativeTarget "HunchMeal" */;
+			buildConfigurationList = 154F87E229C9B1E6000DB84F /* Build configuration list for PBXNativeTarget "HunchMeal" */;
 			buildPhases = (
-				159054CC29C871820094CD52 /* Sources */,
-				159054CD29C871820094CD52 /* Frameworks */,
-				159054CE29C871820094CD52 /* Resources */,
+				154F87B429C9B1E6000DB84F /* Sources */,
+				154F87B529C9B1E6000DB84F /* Frameworks */,
+				154F87B629C9B1E6000DB84F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -144,69 +152,69 @@
 			);
 			name = HunchMeal;
 			productName = HunchMeal;
-			productReference = 159054D029C871820094CD52 /* HunchMeal.app */;
+			productReference = 154F87B829C9B1E6000DB84F /* HunchMeal.app */;
 			productType = "com.apple.product-type.application";
 		};
-		159054DF29C871830094CD52 /* HunchMealTests */ = {
+		154F87CD29C9B1E6000DB84F /* HunchMealTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 159054F729C871830094CD52 /* Build configuration list for PBXNativeTarget "HunchMealTests" */;
+			buildConfigurationList = 154F87E529C9B1E6000DB84F /* Build configuration list for PBXNativeTarget "HunchMealTests" */;
 			buildPhases = (
-				159054DC29C871830094CD52 /* Sources */,
-				159054DD29C871830094CD52 /* Frameworks */,
-				159054DE29C871830094CD52 /* Resources */,
+				154F87CA29C9B1E6000DB84F /* Sources */,
+				154F87CB29C9B1E6000DB84F /* Frameworks */,
+				154F87CC29C9B1E6000DB84F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				159054E229C871830094CD52 /* PBXTargetDependency */,
+				154F87D029C9B1E6000DB84F /* PBXTargetDependency */,
 			);
 			name = HunchMealTests;
 			productName = HunchMealTests;
-			productReference = 159054E029C871830094CD52 /* HunchMealTests.xctest */;
+			productReference = 154F87CE29C9B1E6000DB84F /* HunchMealTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		159054E929C871830094CD52 /* HunchMealUITests */ = {
+		154F87D729C9B1E6000DB84F /* HunchMealUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 159054FA29C871830094CD52 /* Build configuration list for PBXNativeTarget "HunchMealUITests" */;
+			buildConfigurationList = 154F87E829C9B1E6000DB84F /* Build configuration list for PBXNativeTarget "HunchMealUITests" */;
 			buildPhases = (
-				159054E629C871830094CD52 /* Sources */,
-				159054E729C871830094CD52 /* Frameworks */,
-				159054E829C871830094CD52 /* Resources */,
+				154F87D429C9B1E6000DB84F /* Sources */,
+				154F87D529C9B1E6000DB84F /* Frameworks */,
+				154F87D629C9B1E6000DB84F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				159054EC29C871830094CD52 /* PBXTargetDependency */,
+				154F87DA29C9B1E6000DB84F /* PBXTargetDependency */,
 			);
 			name = HunchMealUITests;
 			productName = HunchMealUITests;
-			productReference = 159054EA29C871830094CD52 /* HunchMealUITests.xctest */;
+			productReference = 154F87D829C9B1E6000DB84F /* HunchMealUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		159054C829C871820094CD52 /* Project object */ = {
+		154F87B029C9B1E6000DB84F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					159054CF29C871820094CD52 = {
+					154F87B729C9B1E6000DB84F = {
 						CreatedOnToolsVersion = 14.2;
 					};
-					159054DF29C871830094CD52 = {
+					154F87CD29C9B1E6000DB84F = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 159054CF29C871820094CD52;
+						TestTargetID = 154F87B729C9B1E6000DB84F;
 					};
-					159054E929C871830094CD52 = {
+					154F87D729C9B1E6000DB84F = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 159054CF29C871820094CD52;
+						TestTargetID = 154F87B729C9B1E6000DB84F;
 					};
 				};
 			};
-			buildConfigurationList = 159054CB29C871820094CD52 /* Build configuration list for PBXProject "HunchMeal" */;
+			buildConfigurationList = 154F87B329C9B1E6000DB84F /* Build configuration list for PBXProject "HunchMeal" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -214,36 +222,36 @@
 				en,
 				Base,
 			);
-			mainGroup = 159054C729C871820094CD52;
-			productRefGroup = 159054D129C871820094CD52 /* Products */;
+			mainGroup = 154F87AF29C9B1E6000DB84F;
+			productRefGroup = 154F87B929C9B1E6000DB84F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				159054CF29C871820094CD52 /* HunchMeal */,
-				159054DF29C871830094CD52 /* HunchMealTests */,
-				159054E929C871830094CD52 /* HunchMealUITests */,
+				154F87B729C9B1E6000DB84F /* HunchMeal */,
+				154F87CD29C9B1E6000DB84F /* HunchMealTests */,
+				154F87D729C9B1E6000DB84F /* HunchMealUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		159054CE29C871820094CD52 /* Resources */ = {
+		154F87B629C9B1E6000DB84F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159054DB29C871830094CD52 /* Preview Assets.xcassets in Resources */,
-				159054D829C871830094CD52 /* Assets.xcassets in Resources */,
+				154F87C329C9B1E6000DB84F /* Preview Assets.xcassets in Resources */,
+				154F87C029C9B1E6000DB84F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		159054DE29C871830094CD52 /* Resources */ = {
+		154F87CC29C9B1E6000DB84F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		159054E829C871830094CD52 /* Resources */ = {
+		154F87D629C9B1E6000DB84F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -253,49 +261,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		159054CC29C871820094CD52 /* Sources */ = {
+		154F87B429C9B1E6000DB84F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159054D629C871820094CD52 /* ContentView.swift in Sources */,
-				159054D429C871820094CD52 /* HunchMealApp.swift in Sources */,
+				154F87C529C9B1E6000DB84F /* Persistence.swift in Sources */,
+				154F87BE29C9B1E6000DB84F /* ContentView.swift in Sources */,
+				154F87BC29C9B1E6000DB84F /* HunchMealApp.swift in Sources */,
+				154F87C829C9B1E6000DB84F /* HunchMeal.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		159054DC29C871830094CD52 /* Sources */ = {
+		154F87CA29C9B1E6000DB84F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159054E529C871830094CD52 /* HunchMealTests.swift in Sources */,
+				154F87D329C9B1E6000DB84F /* HunchMealTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		159054E629C871830094CD52 /* Sources */ = {
+		154F87D429C9B1E6000DB84F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159054F129C871830094CD52 /* HunchMealUITestsLaunchTests.swift in Sources */,
-				159054EF29C871830094CD52 /* HunchMealUITests.swift in Sources */,
+				154F87DF29C9B1E6000DB84F /* HunchMealUITestsLaunchTests.swift in Sources */,
+				154F87DD29C9B1E6000DB84F /* HunchMealUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		159054E229C871830094CD52 /* PBXTargetDependency */ = {
+		154F87D029C9B1E6000DB84F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 159054CF29C871820094CD52 /* HunchMeal */;
-			targetProxy = 159054E129C871830094CD52 /* PBXContainerItemProxy */;
+			target = 154F87B729C9B1E6000DB84F /* HunchMeal */;
+			targetProxy = 154F87CF29C9B1E6000DB84F /* PBXContainerItemProxy */;
 		};
-		159054EC29C871830094CD52 /* PBXTargetDependency */ = {
+		154F87DA29C9B1E6000DB84F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 159054CF29C871820094CD52 /* HunchMeal */;
-			targetProxy = 159054EB29C871830094CD52 /* PBXContainerItemProxy */;
+			target = 154F87B729C9B1E6000DB84F /* HunchMeal */;
+			targetProxy = 154F87D929C9B1E6000DB84F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		159054F229C871830094CD52 /* Debug */ = {
+		154F87E029C9B1E6000DB84F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -355,7 +365,7 @@
 			};
 			name = Debug;
 		};
-		159054F329C871830094CD52 /* Release */ = {
+		154F87E129C9B1E6000DB84F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -409,7 +419,7 @@
 			};
 			name = Release;
 		};
-		159054F529C871830094CD52 /* Debug */ = {
+		154F87E329C9B1E6000DB84F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -438,7 +448,7 @@
 			};
 			name = Debug;
 		};
-		159054F629C871830094CD52 /* Release */ = {
+		154F87E429C9B1E6000DB84F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -467,7 +477,7 @@
 			};
 			name = Release;
 		};
-		159054F829C871830094CD52 /* Debug */ = {
+		154F87E629C9B1E6000DB84F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -487,7 +497,7 @@
 			};
 			name = Debug;
 		};
-		159054F929C871830094CD52 /* Release */ = {
+		154F87E729C9B1E6000DB84F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -507,7 +517,7 @@
 			};
 			name = Release;
 		};
-		159054FB29C871830094CD52 /* Debug */ = {
+		154F87E929C9B1E6000DB84F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -525,7 +535,7 @@
 			};
 			name = Debug;
 		};
-		159054FC29C871830094CD52 /* Release */ = {
+		154F87EA29C9B1E6000DB84F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -546,43 +556,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		159054CB29C871820094CD52 /* Build configuration list for PBXProject "HunchMeal" */ = {
+		154F87B329C9B1E6000DB84F /* Build configuration list for PBXProject "HunchMeal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				159054F229C871830094CD52 /* Debug */,
-				159054F329C871830094CD52 /* Release */,
+				154F87E029C9B1E6000DB84F /* Debug */,
+				154F87E129C9B1E6000DB84F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		159054F429C871830094CD52 /* Build configuration list for PBXNativeTarget "HunchMeal" */ = {
+		154F87E229C9B1E6000DB84F /* Build configuration list for PBXNativeTarget "HunchMeal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				159054F529C871830094CD52 /* Debug */,
-				159054F629C871830094CD52 /* Release */,
+				154F87E329C9B1E6000DB84F /* Debug */,
+				154F87E429C9B1E6000DB84F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		159054F729C871830094CD52 /* Build configuration list for PBXNativeTarget "HunchMealTests" */ = {
+		154F87E529C9B1E6000DB84F /* Build configuration list for PBXNativeTarget "HunchMealTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				159054F829C871830094CD52 /* Debug */,
-				159054F929C871830094CD52 /* Release */,
+				154F87E629C9B1E6000DB84F /* Debug */,
+				154F87E729C9B1E6000DB84F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		159054FA29C871830094CD52 /* Build configuration list for PBXNativeTarget "HunchMealUITests" */ = {
+		154F87E829C9B1E6000DB84F /* Build configuration list for PBXNativeTarget "HunchMealUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				159054FB29C871830094CD52 /* Debug */,
-				159054FC29C871830094CD52 /* Release */,
+				154F87E929C9B1E6000DB84F /* Debug */,
+				154F87EA29C9B1E6000DB84F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		154F87C629C9B1E6000DB84F /* HunchMeal.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				154F87C729C9B1E6000DB84F /* HunchMeal.xcdatamodel */,
+			);
+			currentVersion = 154F87C729C9B1E6000DB84F /* HunchMeal.xcdatamodel */;
+			path = HunchMeal.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
-	rootObject = 159054C829C871820094CD52 /* Project object */;
+	rootObject = 154F87B029C9B1E6000DB84F /* Project object */;
 }
