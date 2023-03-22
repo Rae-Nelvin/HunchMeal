@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  HunchMealView.swift
 //  HunchMeal
 //
 //  Created by Leonardo Wijaya on 21/03/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HunchMealView: View {
     var body: some View {
         ZStack() {
             Circle()
@@ -52,6 +52,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HunchMealView()
     }
 }

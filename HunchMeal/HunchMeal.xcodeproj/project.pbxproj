@@ -17,7 +17,7 @@
 		15B6138329CB12D900CB0D1E /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6138229CB12D900CB0D1E /* Question.swift */; };
 		15B6138529CB2A8A00CB0D1E /* EndGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6138429CB2A8A00CB0D1E /* EndGameViewModel.swift */; };
 		15DB120E29C9BF6000333F16 /* HunchMealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB120D29C9BF6000333F16 /* HunchMealApp.swift */; };
-		15DB121029C9BF6000333F16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB120F29C9BF6000333F16 /* ContentView.swift */; };
+		15DB121029C9BF6000333F16 /* HunchMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB120F29C9BF6000333F16 /* HunchMealView.swift */; };
 		15DB121229C9BF6100333F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB121129C9BF6100333F16 /* Assets.xcassets */; };
 		15DB121529C9BF6100333F16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB121429C9BF6100333F16 /* Preview Assets.xcassets */; };
 		15DB121F29C9BF6100333F16 /* HunchMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB121E29C9BF6100333F16 /* HunchMealTests.swift */; };
@@ -54,7 +54,7 @@
 		15B6138429CB2A8A00CB0D1E /* EndGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewModel.swift; sourceTree = "<group>"; };
 		15DB120A29C9BF6000333F16 /* HunchMeal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HunchMeal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB120D29C9BF6000333F16 /* HunchMealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealApp.swift; sourceTree = "<group>"; };
-		15DB120F29C9BF6000333F16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		15DB120F29C9BF6000333F16 /* HunchMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealView.swift; sourceTree = "<group>"; };
 		15DB121129C9BF6100333F16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15DB121429C9BF6100333F16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15DB121A29C9BF6100333F16 /* HunchMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +112,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		15B6138629CB472000CB0D1E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15DB120F29C9BF6000333F16 /* HunchMealView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		15DB120129C9BF6000333F16 = {
 			isa = PBXGroup;
 			children = (
@@ -135,10 +143,10 @@
 		15DB120C29C9BF6000333F16 /* HunchMeal */ = {
 			isa = PBXGroup;
 			children = (
+				15B6138629CB472000CB0D1E /* Views */,
 				15B6137D29CAF98600CB0D1E /* ViewModels */,
 				15B6137029CAF59800CB0D1E /* Models */,
 				15DB120D29C9BF6000333F16 /* HunchMealApp.swift */,
-				15DB120F29C9BF6000333F16 /* ContentView.swift */,
 				15DB121129C9BF6100333F16 /* Assets.xcassets */,
 				15DB121329C9BF6100333F16 /* Preview Content */,
 			);
@@ -301,7 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B6137C29CAF66D00CB0D1E /* FoodIngredient.swift in Sources */,
-				15DB121029C9BF6000333F16 /* ContentView.swift in Sources */,
+				15DB121029C9BF6000333F16 /* HunchMealView.swift in Sources */,
 				15B6137A29CAF65100CB0D1E /* FoodTaste.swift in Sources */,
 				15B6138529CB2A8A00CB0D1E /* EndGameViewModel.swift in Sources */,
 				15B6137829CAF62B00CB0D1E /* FoodProcesses.swift in Sources */,
