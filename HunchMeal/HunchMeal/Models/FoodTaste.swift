@@ -13,9 +13,11 @@ struct FoodTaste: Identifiable {
 }
 
 struct FoodTasteLists {
-    static let lists: [FoodTaste] = [FoodTaste(taste: "Sweet"),
+    static let lists: [FoodTaste] = [FoodTaste(taste: "Sweet"), // 0
                                      FoodTaste(taste: "Sour"),
                                      FoodTaste(taste: "Salty"),
                                      FoodTaste(taste: "Bitter"),
-                                     FoodTaste(taste: "Umami")]
+                                     FoodTaste(taste: "Umami"),
+                                     FoodTaste(taste: "Spicy"), //5
+    ]
 }
