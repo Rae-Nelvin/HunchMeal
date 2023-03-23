@@ -47,7 +47,7 @@ struct TitleText: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 88, weight: .bold))
+            .font(.system(size:88, design: .rounded).weight(.bold))
             .foregroundColor(Color("Purple"))
             .navigationBarTitleDisplayMode(.inline)
             .offset(y: -98)
@@ -59,7 +59,7 @@ struct ButtonText: View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 36, weight: .bold))
+            .font(.system(size:36, design: .rounded).weight(.bold))
             .frame(width: 146, height: 146)
             .foregroundColor(Color("Yellow"))
             .background(Color("Purple"))
