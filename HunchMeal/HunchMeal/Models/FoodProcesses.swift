@@ -13,5 +13,11 @@ struct FoodProcesses: Identifiable {
 }
 
 struct FoodProcessesList {
-    static let lists: [FoodProcesses] = []
+    static let lists: [FoodProcesses] = [
+        FoodProcesses(process: "Fried"),
+        FoodProcesses(process: "Boiled"),
+        FoodProcesses(process: "Baked"),
+        FoodProcesses(process: "Pasteurized"),
+        FoodProcesses(process: "Steamed")
+    ]
 }

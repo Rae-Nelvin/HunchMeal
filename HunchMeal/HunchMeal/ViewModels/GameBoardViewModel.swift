@@ -45,7 +45,7 @@ class GameBoardViewModel: ObservableObject {
                 question = Question(part1: "Is this food type of", part2: foodAnswer.type.type)
                 break
             case 2:
-                question = Question(part1: "Is this food came from", part2: foodAnswer.origin.origin)
+                question = Question(part1: "Is this food came from", part2: "\(getRandomFoodOrigin(lists: foodAnswer.origin))")
                 break
             case 3:
                 question = Question(part1: "Is this food made by", part2: foodAnswer.cookProcesses.process)
@@ -96,8 +96,10 @@ class GameBoardViewModel: ObservableObject {
                 count += 1
             }
         }
-        if (count == foodDatas.count - 1) {
+        if (count == foodDatas.count - 1 && checkAnswer() == true) {
             isWin = true
+        } else {
+            isWin = false
         }
     }
     
@@ -157,7 +159,7 @@ class GameBoardViewModel: ObservableObject {
         if (question.part2 == foodAnswer.type.type) {
             return true
         }
-        if (question.part2 == foodAnswer.origin.origin) {
+        if (foodAnswer.origin.contains(where: { $0.origin == question.part2 } )) {
             return true
         }
         if (question.part2 == foodAnswer.cookProcesses.process) {
@@ -178,5 +180,21 @@ class GameBoardViewModel: ObservableObject {
             return false
         }
         return true
+    }
+    
+    private func checkAnswer() -> Bool {
+        var answer: Food = Food(name: "", type: FoodType(type: ""), origin: [], cookProcesses: FoodProcesses(process: ""), taste: [], ingredient: [])
+        
+        for i in 0..<foodDatas.count {
+            if (foodDatas[i].isElim == false) {
+                answer = foodDatas[i]
+            }
+        }
+        
+        if (answer.id == foodAnswer.id) {
+            return true
+        }
+        
+        return false
     }
 }

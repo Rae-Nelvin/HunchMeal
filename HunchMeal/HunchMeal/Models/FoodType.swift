@@ -16,5 +16,6 @@ struct FoodTypeLists {
     static let lists: [FoodType] = [FoodType(type: "Main Course"),
                                     FoodType(type: "Side Dish"),
                                     FoodType(type: "Dessert"),
-                                    FoodType(type: "Appetizer")]
+                                    FoodType(type: "Appetizer"),
+                                    FoodType(type: "Snack")]
 }

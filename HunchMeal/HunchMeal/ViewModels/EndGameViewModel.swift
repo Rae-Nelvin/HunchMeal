@@ -8,9 +8,23 @@
 import Foundation
 
 class EndGameViewModel: ObservableObject {
-    @Published var score: Int
+    @Published var score: Int = 0
     
-    init(guessCount: Int) {
+    init(guessCount: Int, isWin: Bool) {
+        displayCondition(guessCount: guessCount, isWin: isWin)
+    }
+    
+    private func displayCondition(guessCount: Int, isWin: Bool) {
+        if (isWin == true) {
+            // Display Win View
+            countScore(guessCount: guessCount)
+        } else {
+            // Display Lose View
+            score = 0
+        }
+    }
+    
+    private func countScore(guessCount: Int) {
         if (guessCount == 0) {
             score = 100
         } else if (guessCount > 0 && guessCount < 4) {
@@ -23,4 +37,5 @@ class EndGameViewModel: ObservableObject {
             score = 60
         }
     }
+
 }
