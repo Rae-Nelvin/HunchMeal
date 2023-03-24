@@ -33,10 +33,9 @@ final class GameBoardViewModel: ObservableObject {
         }
         let shuffledObjects = datas.shuffled()
         let data = shuffledObjects.prefix(1)[0]
-        self.foodDatas = datas
+        self.foodDatas = FoodLists.lists
         self.foodAnswer = data
         self.questions = []
-        flag = countFlag(food: foodAnswer)
     }
     
     func showQuestions() {

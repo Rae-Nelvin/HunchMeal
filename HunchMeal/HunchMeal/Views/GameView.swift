@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct GameView: View {
-    @StateObject var gbv = GameBoardViewModel()
+    @StateObject var gbvm = GameBoardViewModel()
     @State private var showLandingPage = false
+    private let columns: [GridItem] = Array(repeating: .init(.fixed(90)), count: 4)
     
     var body: some View {
         ZStack(){
@@ -17,44 +18,28 @@ struct GameView: View {
             if showLandingPage{
                 HunchMealView()
             } else {
-                VStack(){
-                    VStack() {
-                        ForEach(0..<5) { _ in
-                            HStack() {
-                                ForEach(0..<4) { _ in
-                                    SmallCardView(photo: "photo")
-                                }
+                VStack() {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(gbvm.foodDatas, id: \.id) { food in
+                            VStack {
+                                SmallCardView(photo: food.image)
                             }
                         }
-                        CustomNavigationBar(gbv: gbv,showLandingPage: $showLandingPage)
-                        
-                        HStack(alignment: .bottom){
-                            VStack(alignment: .leading){
-                                Text("Turn 05")
-                                    .font(.system(size:32, design: .rounded).weight(.bold))
-                                    .foregroundColor(Color("Yellow"))
-                                
-                                Button (action: {
-                                    print("Ask a question tapped")
-
-                                }){
-                                    Text("Ask a Question")
-                                        .font(.system(size: 16, design: .rounded).weight(.bold))
-                                        .frame(width: 204, height: 51)
-                                        .foregroundColor(Color("Yellow"))
-                                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
-                                }
-                            }
-                            
-                            Image("SusCat")
-                                .resizable()
-                                .frame(width: 122, height: 180)
+                    }
+                    .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
+                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage)
+                    HStack(alignment: .bottom){
+                        VStack(alignment: .leading){
+                            Text("Turn \(String(format: "%02d", gbvm.totalGuess + 1))")
+                                .font(.system(size:32, design: .rounded).weight(.bold))
+                                .foregroundColor(Color("Yellow"))
+                            AskQuestionButton()
                         }
-                        .frame(height: 150)
-
+                        Image("SusCat")
+                            .resizable()
+                            .frame(width: 122, height: 160)
                     }
                 }
-//                .padding(.bottom, 125)
             }
         }
         .padding()
@@ -74,13 +59,14 @@ struct SmallCardView: View {
     
     var body: some View {
         HStack(){
-            Image(systemName: photo)
+            Image(photo)
+                .resizable()
+                .padding(6)
                 .frame(width: 66.75, height: 89)
                 .background(Color("LightYellow"))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color("Purple"), lineWidth: 4))
-                .padding(6)
                 .onLongPressGesture(minimumDuration: 2){
                     print("tapped")
                 }
@@ -89,7 +75,7 @@ struct SmallCardView: View {
 }
 
 struct CustomNavigationBar: View{
-    @StateObject var gbv: GameBoardViewModel
+    @StateObject var gbvm: GameBoardViewModel
     @Binding var showLandingPage:Bool
     
     var body: some View {
@@ -99,43 +85,67 @@ struct CustomNavigationBar: View{
                     Button (action: {
                         showLandingPage = true
                     }){
-                        Image(systemName: "arrow.left.square.fill")
-                            .font(.system(size: 40.0, weight: .medium))
-                            .imageScale(.large)
-                            .foregroundColor(Color("Purple"))
+                        CustomNavigationToolBarImage(image: "arrow.left.square.fill")
                     }
                 }
-                
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
                         print("Question Tapped")
                     }){
-                        Image(systemName: "questionmark.square.fill")
-                            .font(.system(size: 40.0, weight: .medium))
-                            .imageScale(.large)
-                            .foregroundColor(Color("Purple"))
+                        CustomNavigationToolBarImage(image: "questionmark.square.fill")
                     }
                 }
-                
                 ToolbarItem(placement: .principal){
-                    Text("\(gbv.secondsRemaining / 60) : \(String(format: "%02d", gbv.secondsRemaining % 60))")
-                        .frame(width: 80.0, height: 25.0)
-                        .padding(9)
-                        .font(.system(size: 24, design: .rounded).weight(.bold))
-                        .foregroundColor(Color("Purple"))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 7)
-                                .stroke(Color("Purple"), lineWidth: 4))
-                        .imageScale(.large)
+                    CustomToolBarCountdownTimer(gbvm: gbvm)
                 }
             }
             .navigationBarBackButtonHidden(true)
             .onAppear() {
-                gbv.startTimer()
+                gbvm.startTimer()
             }
             .onDisappear() {
-                gbv.stopTimer()
+                gbvm.stopTimer()
             }
     }
 }
 
+struct CustomNavigationToolBarImage: View {
+    var image: String
+    
+    var body: some View {
+        Image(systemName: image)
+            .font(.system(size: 40.0, weight: .medium))
+            .imageScale(.large)
+            .foregroundColor(Color("Purple"))
+    }
+}
+
+struct CustomToolBarCountdownTimer: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Text("\(gbvm.secondsRemaining / 60) : \(String(format: "%02d", gbvm.secondsRemaining % 60))")
+            .frame(width: 80.0, height: 25.0)
+            .padding(9)
+            .font(.system(size: 24, design: .rounded).weight(.bold))
+            .foregroundColor(Color("Purple"))
+            .overlay(
+                RoundedRectangle(cornerRadius: 7)
+                    .stroke(Color("Purple"), lineWidth: 4))
+            .imageScale(.large)
+    }
+}
+
+struct AskQuestionButton: View {
+    var body: some View {
+        Button (action: {
+            print("Ask a question tapped")
+        }){
+            Text("Ask a Question")
+                .font(.system(size: 16, design: .rounded).weight(.bold))
+                .frame(width: 204, height: 51)
+                .foregroundColor(Color("Yellow"))
+                .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+        }
+    }
+}
