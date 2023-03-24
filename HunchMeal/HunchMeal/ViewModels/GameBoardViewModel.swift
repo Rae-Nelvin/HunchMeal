@@ -13,6 +13,8 @@ class GameBoardViewModel: ObservableObject {
     @Published var chosenQuestion: [Question] = []
     @Published var foodDatas: [Food]
     @Published var foodAnswer: Food
+    @Published var secondsRemaining: Int = 300
+    @Published var timeRunning: Bool
     
     init() {
         var datas: [Food] = []
@@ -30,6 +32,7 @@ class GameBoardViewModel: ObservableObject {
         let data = shuffledObjects.prefix(1)[0]
         self.foodDatas = datas
         self.foodAnswer = data
+        self.timeRunning = true
     }
     
     func showQuestions() -> [Question] {
@@ -83,9 +86,9 @@ class GameBoardViewModel: ObservableObject {
         return "No, it is not"
     }
     
-    // When player eliminate a card
     func eliminateCard(_ index: Int) {
         foodDatas[index].isElim = true
+        checkWin()
     }
     
     // Win Conditional
@@ -96,10 +99,24 @@ class GameBoardViewModel: ObservableObject {
                 count += 1
             }
         }
+        
+        if (timeRunning == false) {
+            isWin = false
+        }
         if (count == foodDatas.count - 1 && checkAnswer() == true) {
             isWin = true
         } else {
             isWin = false
+        }
+    }
+    
+    func startTimer() {
+        if timeRunning {
+            if secondsRemaining > 0 {
+                secondsRemaining -= 0
+            } else {
+                timeRunning = false
+            }
         }
     }
     
@@ -176,14 +193,11 @@ class GameBoardViewModel: ObservableObject {
     }
     
     private func checkQuestion(question: Question) -> Bool {
-        if (chosenQuestion.contains(where: { $0.part2 == question.part2 })) {
-            return false
-        }
-        return true
+        return chosenQuestion.contains(where: { $0.part2 == question.part2 })
     }
     
     private func checkAnswer() -> Bool {
-        var answer: Food = Food(name: "", image: "", type: FoodType(type: ""), origin: [], cookProcesses: FoodProcesses(process: ""), taste: [], ingredient: [])
+        var answer: Food = Food(name: "",image: "", type: FoodType(type: ""), origin: [], cookProcesses: FoodProcesses(process: ""), taste: [], ingredient: [])
         
         for i in 0..<foodDatas.count {
             if (foodDatas[i].isElim == false) {
