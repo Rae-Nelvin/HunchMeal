@@ -121,7 +121,7 @@ final class GameBoardViewModel: ObservableObject {
         }
     }
     
-    private func stopTimer() {
+    func stopTimer() {
         timer?.invalidate()
         timer = nil
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameView: View {
-    @StateObject private var gbv = GameBoardViewModel()
+    @StateObject var gbv = GameBoardViewModel()
     @State private var showLandingPage = false
     
     var body: some View {
@@ -26,9 +26,7 @@ struct GameView: View {
                                 }
                             }
                         }
-                        
-                        NavigationBar(showLandingPage: $showLandingPage)
-                
+                        CustomNavigationBar(gbv: gbv,showLandingPage: $showLandingPage)
                     }
                 }
                 .padding(.bottom, 125)
@@ -65,9 +63,10 @@ struct SmallCardView: View {
     }
 }
 
-struct NavigationBar: View{
+struct CustomNavigationBar: View{
+    @StateObject var gbv: GameBoardViewModel
     @Binding var showLandingPage:Bool
-
+    
     var body: some View {
         NavigationLink("", destination: HunchMealView())
             .toolbar{
@@ -90,7 +89,7 @@ struct NavigationBar: View{
                 }
                 
                 ToolbarItem(placement: .principal){
-                    Text("00:00")
+                    Text("\(gbv.secondsRemaining / 60) : \(String(format: "%02d", gbv.secondsRemaining % 60))")
                         .frame(width: 80.0, height: 25.0)
                         .padding(9)
                         .font(.system(size: 24, design: .rounded).weight(.bold))
@@ -102,6 +101,12 @@ struct NavigationBar: View{
                 }
             }
             .navigationBarBackButtonHidden(true)
+            .onAppear() {
+                gbv.startTimer()
+            }
+            .onDisappear() {
+                gbv.stopTimer()
+            }
     }
 }
 
