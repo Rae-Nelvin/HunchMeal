@@ -9,29 +9,44 @@ import SwiftUI
 
 struct GameView: View {
     var body: some View {
-        NavigationView{
+//        NavigationView{
             ZStack(){
-                Circle()
-                    .foregroundColor(Color("Yellow"))
-                    .frame(width: 753, height: 753)
-                    .fixedSize()
-                    .offset(y: -160)
+                BackgroundYellowCircle()
                 VStack(){
                     HStack(){
-                        Image(systemName: "photo")
-//                                .foregroundColor(Color("LightYellow"))
-                            
-                            .frame(width: 66.75, height: 89)
-                            .background(Color("LightYellow"))
-                            .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color("Purple"), lineWidth: 4))
-                            .onLongPressGesture(minimumDuration: 2){
-                                print("tapped")
-                            }
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
                     }
+                    HStack(){
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                    }
+                    HStack(){
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                    }
+                    HStack(){
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                    }
+                    HStack(){
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                        SmallCardView()
+                    }
+                    .padding(.bottom, 125)
+
                             
-                    Text("")
+                    NavigationLink("Back", destination: HunchMealView())
                         .toolbar{
                             ToolbarItem(placement: .navigationBarLeading){
                                 Image(systemName: "arrow.left.square.fill")
@@ -39,14 +54,14 @@ struct GameView: View {
                                     .imageScale(.large)
                                     .foregroundColor(Color("Purple"))
                             }
-                            
+
                             ToolbarItem(placement: .navigationBarTrailing){
                                 Image(systemName: "questionmark.square.fill")
                                     .font(.system(size: 40.0, weight: .medium))
                                     .imageScale(.large)
                                     .foregroundColor(Color("Purple"))
                             }
-                            
+
                             ToolbarItem(placement: .principal){
                                 Text("00:00")
                                     .frame(width: 80.0, height: 25.0)
@@ -59,17 +74,39 @@ struct GameView: View {
                                     .imageScale(.large)
                             }
                         }
+                        .navigationBarBackButtonHidden(true)
+
                     
                 }
             }
             .padding()
             .background(Color("Purple"))
-        }
+//        }
     }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
+    }
+}
+
+struct SmallCardView: View {
+    
+    var body: some View {
+        HStack(){
+            Image(systemName: "photo")
+            //                                .foregroundColor(Color("LightYellow"))
+            
+                .frame(width: 66.75, height: 89)
+                .background(Color("LightYellow"))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color("Purple"), lineWidth: 4))
+                .padding(6)
+                .onLongPressGesture(minimumDuration: 2){
+                    print("tapped")
+                }
+        }
     }
 }

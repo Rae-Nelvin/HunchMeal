@@ -8,21 +8,44 @@
 import SwiftUI
 
 struct HunchMealView: View {
+    @State var navigated = false
+
     var body: some View {
-        ZStack() {
-            BackgroundYellowCircle()
-            VStack{
-                TitleText(text: "Hunch")
-                TitleText(text: "Meal")
-                Button(action: {
-                    print("tapped")
-                }){
-                    ButtonText(text: "PLAY")
+//        ZStack() {
+//            BackgroundYellowCircle()
+//            VStack{
+//                TitleText(text: "Hunch")
+//                TitleText(text: "Meal")
+//                Button(action: {
+//                  print("tapped")
+//                    GameView()
+//                }){
+//                    ButtonText(text: "PLAY")
+//                }
+//            }
+//        }
+        
+        NavigationStack(){
+            ZStack() {
+                BackgroundYellowCircle()
+                VStack{
+                    TitleText(text: "Hunch")
+                    TitleText(text: "Meal")
+                    NavigationLink(destination: GameView()){
+                        ButtonText(text: "PLAY")
+                    }
+                    
                 }
             }
+            .padding()
+            .background(Color("Purple"))
         }
-        .padding()
-        .background(Color("Purple"))
+        
+
+//        .padding()
+//        .background(Color("Purple"))
+        .navigationBarBackButtonHidden(true)
+
     }
 }
 
@@ -38,7 +61,7 @@ struct BackgroundYellowCircle: View {
             .foregroundColor(Color("Yellow"))
             .frame(width: 753, height: 753)
             .fixedSize()
-            .offset(y: -160)
+            .offset(y: -120)
     }
 }
 

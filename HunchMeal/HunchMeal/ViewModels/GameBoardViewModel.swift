@@ -183,7 +183,7 @@ class GameBoardViewModel: ObservableObject {
     }
     
     private func checkAnswer() -> Bool {
-        var answer: Food = Food(name: "", type: FoodType(type: ""), origin: [], cookProcesses: FoodProcesses(process: ""), taste: [], ingredient: [])
+        var answer: Food = Food(name: "", image: "", type: FoodType(type: ""), origin: [], cookProcesses: FoodProcesses(process: ""), taste: [], ingredient: [])
         
         for i in 0..<foodDatas.count {
             if (foodDatas[i].isElim == false) {
