@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import Combine
 
-class GameBoardViewModel: ObservableObject {
+final class GameBoardViewModel: ObservableObject {
     @Published var isWin: Bool = false
     @Published var totalGuess: Int = 0
     @Published var chosenQuestion: [Question] = []
     @Published var foodDatas: [Food]
     @Published var foodAnswer: Food
     @Published var secondsRemaining: Int = 300
-    @Published var timeRunning: Bool
+    @Published var questions: [Question]
+    private var timer: Timer?
+    private var flag: Int = 0
     
     init() {
         var datas: [Food] = []
@@ -32,12 +35,13 @@ class GameBoardViewModel: ObservableObject {
         let data = shuffledObjects.prefix(1)[0]
         self.foodDatas = datas
         self.foodAnswer = data
-        self.timeRunning = true
+        self.questions = []
+        flag = countFlag(food: foodAnswer)
     }
     
-    func showQuestions() -> [Question] {
+    func showQuestions() {
         var randomNumber: Int = 0
-        var questions: [Question] = []
+        questions = []
         var question: Question = Question(part1: "", part2: "")
         
         // Generate 1 correct question
@@ -62,19 +66,14 @@ class GameBoardViewModel: ObservableObject {
             default:
                 break
             }
-        }  while (checkQuestion(question: question) == false)
-        questions.append(question)
-        
-        // Generate 3 random questions
-        for _ in 0..<3 {
-            repeat {
-                randomNumber = Int.random(in: 1...5)
-                question = getRandomQuestions(randomNumber: randomNumber)
-            } while (checkQuestion(question: question) == false)
+        }  while (checkQuestion(question: question) == false && flag > 0)
+        if (flag > 0) {
+            flag -= 1
             questions.append(question)
         }
+        getAmountRandomQuestions()
         
-        return questions
+        questions = questions.shuffled()
     }
     
     func askQuestion(question: Question) -> String {
@@ -100,7 +99,7 @@ class GameBoardViewModel: ObservableObject {
             }
         }
         
-        if (timeRunning == false) {
+        if (secondsRemaining == 0 && count != foodDatas.count - 1) {
             isWin = false
         }
         if (count == foodDatas.count - 1 && checkAnswer() == true) {
@@ -111,13 +110,29 @@ class GameBoardViewModel: ObservableObject {
     }
     
     func startTimer() {
-        if timeRunning {
-            if secondsRemaining > 0 {
-                secondsRemaining -= 0
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            
+            if self.secondsRemaining > 0 {
+                self.secondsRemaining -= 1
             } else {
-                timeRunning = false
+                self.stopTimer()
             }
         }
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func countFlag(food: Food) -> Int {
+        flag += food.cookProcesses.process.count
+        flag += food.origin.count
+        flag += food.ingredient.count
+        flag += food.taste.count
+        flag += food.type.type.count
+        return flag
     }
     
     private func getRandomQuestions(randomNumber: Int) -> Question {
@@ -134,6 +149,28 @@ class GameBoardViewModel: ObservableObject {
             return Question(part1: "Is one of this food ingredient a", part2: getRandomFoodIngredient(lists: FoodIngredientLists.lists).ingredient)
         default:
             return Question(part1: "", part2: "")
+        }
+    }
+    
+    private func getAmountRandomQuestions() {
+        var question: Question = Question(part1: "", part2: "")
+        if(flag > 0) {
+            // Generate 3 random questions
+            for _ in 0..<3 {
+                repeat {
+                    let randomNumber = Int.random(in: 1...5)
+                    question = getRandomQuestions(randomNumber: randomNumber)
+                } while (checkQuestion(question: question) == false)
+                questions.append(question)
+            }
+        } else {
+            for _ in 0..<4 {
+                repeat {
+                    let randomNumber = Int.random(in: 1...5)
+                    question = getRandomQuestions(randomNumber: randomNumber)
+                } while (checkQuestion(question: question) == false)
+                questions.append(question)
+            }
         }
     }
     
