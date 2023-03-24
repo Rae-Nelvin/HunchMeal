@@ -8,51 +8,25 @@
 import SwiftUI
 
 struct GameView: View {
+    @StateObject private var gbv = GameBoardViewModel()
+    
     @State private var showLandingPage = false
 
     var body: some View {
         ZStack(){
             BackgroundYellowCircle()
-            
-            if showLandingPage {
-                HunchMealView()
-            }
-            else{
-                VStack(){
-                    HStack(){
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
+            VStack(){
+                VStack() {
+                    ForEach(0..<5) { _ in
+                        HStack() {
+                            ForEach(0..<4) { _ in
+                                SmallCardView(photo: "photo")
+                            }
+                        }
                     }
-                    HStack(){
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                    }
-                    HStack(){
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                    }
-                    HStack(){
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                    }
-                    HStack(){
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                        SmallCardView()
-                    }
-                    .padding(.bottom, 125)
-                    
-                    
-                    NavigationLink("", destination: HunchMealView())
+                }
+                .padding(.bottom, 125)
+                NavigationLink("", destination: HunchMealView())
                         .toolbar{
                             ToolbarItem(placement: .navigationBarLeading){
                                 Button (action: {
@@ -63,8 +37,6 @@ struct GameView: View {
                                         .imageScale(.large)
                                         .foregroundColor(Color("Purple"))
                                 }
-                            }
-                            
                             ToolbarItem(placement: .navigationBarTrailing){
                                 Image(systemName: "questionmark.square.fill")
                                     .font(.system(size: 40.0, weight: .medium))
@@ -101,12 +73,11 @@ struct GameView_Previews: PreviewProvider {
 }
 
 struct SmallCardView: View {
+    var photo: String
     
     var body: some View {
         HStack(){
-            Image(systemName: "photo")
-            //                                .foregroundColor(Color("LightYellow"))
-            
+            Image(systemName: photo)
                 .frame(width: 66.75, height: 89)
                 .background(Color("LightYellow"))
                 .overlay(

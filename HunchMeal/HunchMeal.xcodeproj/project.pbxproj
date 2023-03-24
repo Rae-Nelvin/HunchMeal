@@ -23,6 +23,7 @@
 		15DB121F29C9BF6100333F16 /* HunchMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB121E29C9BF6100333F16 /* HunchMealTests.swift */; };
 		15DB122929C9BF6100333F16 /* HunchMealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB122829C9BF6100333F16 /* HunchMealUITests.swift */; };
 		15DB122B29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */; };
+		15E2B8FB29CD8721000BB713 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2B8FA29CD8721000BB713 /* Rules.swift */; };
 		26CAF0A429CB5DD200202514 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF0A329CB5DD200202514 /* GameView.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		15DB122429C9BF6100333F16 /* HunchMealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DB122829C9BF6100333F16 /* HunchMealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITests.swift; sourceTree = "<group>"; };
 		15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		15E2B8FA29CD8721000BB713 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		26CAF0A329CB5DD200202514 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 				15B6137929CAF65100CB0D1E /* FoodTaste.swift */,
 				15B6137B29CAF66D00CB0D1E /* FoodIngredient.swift */,
 				15B6138229CB12D900CB0D1E /* Question.swift */,
+				15E2B8FA29CD8721000BB713 /* Rules.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			files = (
 				15B6137C29CAF66D00CB0D1E /* FoodIngredient.swift in Sources */,
 				15DB121029C9BF6000333F16 /* HunchMealView.swift in Sources */,
+				15E2B8FB29CD8721000BB713 /* Rules.swift in Sources */,
 				15B6137A29CAF65100CB0D1E /* FoodTaste.swift in Sources */,
 				15B6138529CB2A8A00CB0D1E /* EndGameViewModel.swift in Sources */,
 				15B6137829CAF62B00CB0D1E /* FoodProcesses.swift in Sources */,
