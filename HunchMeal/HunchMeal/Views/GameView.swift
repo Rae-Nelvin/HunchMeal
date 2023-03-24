@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct GameView: View {
+    @State private var showLandingPage = false
+
     var body: some View {
-//        NavigationView{
-            ZStack(){
-                BackgroundYellowCircle()
+        ZStack(){
+            BackgroundYellowCircle()
+            
+            if showLandingPage {
+                HunchMealView()
+            }
+            else{
                 VStack(){
                     HStack(){
                         SmallCardView()
@@ -44,24 +50,28 @@ struct GameView: View {
                         SmallCardView()
                     }
                     .padding(.bottom, 125)
-
-                            
-                    NavigationLink("Back", destination: HunchMealView())
+                    
+                    
+                    NavigationLink("", destination: HunchMealView())
                         .toolbar{
                             ToolbarItem(placement: .navigationBarLeading){
-                                Image(systemName: "arrow.left.square.fill")
-                                    .font(.system(size: 40.0, weight: .medium))
-                                    .imageScale(.large)
-                                    .foregroundColor(Color("Purple"))
+                                Button (action: {
+                                    showLandingPage = true
+                                }){
+                                    Image(systemName: "arrow.left.square.fill")
+                                        .font(.system(size: 40.0, weight: .medium))
+                                        .imageScale(.large)
+                                        .foregroundColor(Color("Purple"))
+                                }
                             }
-
+                            
                             ToolbarItem(placement: .navigationBarTrailing){
                                 Image(systemName: "questionmark.square.fill")
                                     .font(.system(size: 40.0, weight: .medium))
                                     .imageScale(.large)
                                     .foregroundColor(Color("Purple"))
                             }
-
+                            
                             ToolbarItem(placement: .principal){
                                 Text("00:00")
                                     .frame(width: 80.0, height: 25.0)
@@ -69,19 +79,18 @@ struct GameView: View {
                                     .font(.system(size: 24, design: .rounded).weight(.bold))
                                     .foregroundColor(Color("Purple"))
                                     .overlay(
-                                    RoundedRectangle(cornerRadius: 7)
-                                        .stroke(Color("Purple"), lineWidth: 4))
+                                        RoundedRectangle(cornerRadius: 7)
+                                            .stroke(Color("Purple"), lineWidth: 4))
                                     .imageScale(.large)
                             }
                         }
                         .navigationBarBackButtonHidden(true)
-
-                    
                 }
             }
-            .padding()
-            .background(Color("Purple"))
-//        }
+        }
+        .padding()
+        .background(Color("Purple"))
+
     }
 }
 

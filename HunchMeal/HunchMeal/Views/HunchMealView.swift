@@ -11,20 +11,6 @@ struct HunchMealView: View {
     @State var navigated = false
 
     var body: some View {
-//        ZStack() {
-//            BackgroundYellowCircle()
-//            VStack{
-//                TitleText(text: "Hunch")
-//                TitleText(text: "Meal")
-//                Button(action: {
-//                  print("tapped")
-//                    GameView()
-//                }){
-//                    ButtonText(text: "PLAY")
-//                }
-//            }
-//        }
-        
         NavigationStack(){
             ZStack() {
                 BackgroundYellowCircle()
@@ -40,10 +26,6 @@ struct HunchMealView: View {
             .padding()
             .background(Color("Purple"))
         }
-        
-
-//        .padding()
-//        .background(Color("Purple"))
         .navigationBarBackButtonHidden(true)
 
     }
