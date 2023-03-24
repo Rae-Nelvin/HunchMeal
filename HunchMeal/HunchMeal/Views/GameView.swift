@@ -27,9 +27,34 @@ struct GameView: View {
                             }
                         }
                         CustomNavigationBar(gbv: gbv,showLandingPage: $showLandingPage)
+                        
+                        HStack(alignment: .bottom){
+                            VStack(alignment: .leading){
+                                Text("Turn 05")
+                                    .font(.system(size:32, design: .rounded).weight(.bold))
+                                    .foregroundColor(Color("Yellow"))
+                                
+                                Button (action: {
+                                    print("Ask a question tapped")
+
+                                }){
+                                    Text("Ask a Question")
+                                        .font(.system(size: 16, design: .rounded).weight(.bold))
+                                        .frame(width: 204, height: 51)
+                                        .foregroundColor(Color("Yellow"))
+                                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                                }
+                            }
+                            
+                            Image("SusCat")
+                                .resizable()
+                                .frame(width: 122, height: 180)
+                        }
+                        .frame(height: 150)
+
                     }
                 }
-                .padding(.bottom, 125)
+//                .padding(.bottom, 125)
             }
         }
         .padding()
@@ -82,10 +107,14 @@ struct CustomNavigationBar: View{
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Image(systemName: "questionmark.square.fill")
-                        .font(.system(size: 40.0, weight: .medium))
-                        .imageScale(.large)
-                        .foregroundColor(Color("Purple"))
+                    Button(action: {
+                        print("Question Tapped")
+                    }){
+                        Image(systemName: "questionmark.square.fill")
+                            .font(.system(size: 40.0, weight: .medium))
+                            .imageScale(.large)
+                            .foregroundColor(Color("Purple"))
+                    }
                 }
                 
                 ToolbarItem(placement: .principal){
