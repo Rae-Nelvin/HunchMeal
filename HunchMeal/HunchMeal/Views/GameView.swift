@@ -9,10 +9,8 @@ import SwiftUI
 
 struct GameView: View {
     @StateObject private var gbv = GameBoardViewModel()
-    
     @State private var showLandingPage = false
-
-
+    
     var body: some View {
         ZStack(){
             BackgroundYellowCircle()
@@ -33,12 +31,12 @@ struct GameView: View {
                 
                     }
                 }
-                .padding(.bottom, 130)
+                .padding(.bottom, 125)
             }
         }
         .padding()
         .background(Color("Purple"))
-
+        
     }
 }
 
