@@ -16,20 +16,24 @@ struct GameView: View {
     var body: some View {
         ZStack(){
             BackgroundYellowCircle()
-            VStack(){
-                VStack() {
-                    ForEach(0..<5) { _ in
-                        HStack() {
-                            ForEach(0..<4) { _ in
-                                SmallCardView(photo: "photo")
+            if showLandingPage{
+                HunchMealView()
+            } else {
+                VStack(){
+                    VStack() {
+                        ForEach(0..<5) { _ in
+                            HStack() {
+                                ForEach(0..<4) { _ in
+                                    SmallCardView(photo: "photo")
+                                }
                             }
                         }
+                        
+                        NavigationBar(showLandingPage: $showLandingPage)
+                
                     }
-                    .padding(.bottom, 125)
-                    
-                    NavigationBar(showLandingPage: $showLandingPage)
-            
                 }
+                .padding(.bottom, 130)
             }
         }
         .padding()
