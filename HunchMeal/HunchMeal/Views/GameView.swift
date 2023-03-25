@@ -27,7 +27,7 @@ struct GameView: View {
                         }
                     }
                     .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
-                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage)
+                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage, showTimerButton: true, showHintButton: true)
                     HStack(alignment: .bottom){
                         VStack(alignment: .leading){
                             Text("Turn \(String(format: "%02d", gbvm.totalGuess + 1))")
@@ -76,7 +76,9 @@ struct SmallCardView: View {
 
 struct CustomNavigationBar: View{
     @StateObject var gbvm: GameBoardViewModel
-    @Binding var showLandingPage:Bool
+    @Binding var showLandingPage: Bool
+    var showTimerButton: Bool
+    var showHintButton: Bool
     
     var body: some View {
         NavigationLink("", destination: HunchMealView())
@@ -88,15 +90,19 @@ struct CustomNavigationBar: View{
                         CustomNavigationToolBarImage(image: "arrow.left.square.fill")
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button(action: {
-                        print("Question Tapped")
-                    }){
-                        CustomNavigationToolBarImage(image: "questionmark.square.fill")
+                if showTimerButton {
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button(action: {
+                            print("Question Tapped")
+                        }){
+                            CustomNavigationToolBarImage(image: "questionmark.square.fill")
+                        }
                     }
                 }
-                ToolbarItem(placement: .principal){
-                    CustomToolBarCountdownTimer(gbvm: gbvm)
+                if showHintButton {
+                    ToolbarItem(placement: .principal){
+                        CustomToolBarCountdownTimer(gbvm: gbvm)
+                    }
                 }
             }
             .navigationBarBackButtonHidden(true)
