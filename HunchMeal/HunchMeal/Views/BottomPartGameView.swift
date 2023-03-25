@@ -61,6 +61,9 @@ struct QuestionLayout: View {
                 }
             }
         }
+        .onTapGesture {
+            
+        }
         .edgesIgnoringSafeArea(.all)
     }
 }
@@ -117,10 +120,12 @@ struct AskedBottomPartView: View {
                         gbvm.isAsked = false
                     }
                 }
+                .padding(.top, 35)
+            Spacer()
             Image("SusCat")
                 .resizable()
                 .frame(width: 122, height: 160)
         }
-        .padding(.top, 20)
+        .scaledToFit()
     }
 }

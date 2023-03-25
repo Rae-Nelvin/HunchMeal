@@ -74,6 +74,7 @@ final class GameBoardViewModel: ObservableObject {
                 }
             }  while (checkQuestion(question: question) == true)
             questions.append(question)
+            print(question)
         }
         getAmountRandomQuestions()
         
@@ -85,8 +86,9 @@ final class GameBoardViewModel: ObservableObject {
         chosenQuestion.append(question)
         if (getAnswer(question: question) == true) {
             botAnswer = "Yes it is!"
+        } else {
+            botAnswer =  "No, it is not"
         }
-        botAnswer =  "No, it is not"
     }
     
     func eliminateCard(food: Food) {
@@ -224,6 +226,7 @@ final class GameBoardViewModel: ObservableObject {
     
     private func getAnswer(question: Question) -> Bool {
         if (question.part2 == foodAnswer.type.type) {
+            print("true")
             return true
         }
         if (foodAnswer.origin.contains(where: { $0.origin == question.part2 } )) {
