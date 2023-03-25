@@ -11,6 +11,10 @@ struct GameView: View {
     @StateObject var gbvm = GameBoardViewModel()
     @State private var showLandingPage = false
     private let columns: [GridItem] = Array(repeating: .init(.fixed(90)), count: 4)
+    @State var showLargeCard: Bool = false
+    @State var selectedFood: Food?
+    @State var showRulesView: Bool = false
+    @State var showExitConfirmation: Bool = false
     
     var body: some View {
         ZStack(){
@@ -21,13 +25,23 @@ struct GameView: View {
                 VStack() {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(gbvm.foodDatas, id: \.id) { food in
-                            VStack {
-                                SmallCardView(gbvm: gbvm, food: food)
-                            }
+                            SmallCardView(gbvm: gbvm, food: food, showLargeCard: $showLargeCard)
+                                .onLongPressGesture(minimumDuration: 1.0, perform: {
+                                    selectedFood = food
+                                    if selectedFood?.isElim != true {
+                                        showLargeCard = true
+                                    }
+                                })
+                                .sheet(isPresented: $showLargeCard) {
+                                    LargeCardView(food: $selectedFood)
+                                        .onTapGesture {
+                                            showLargeCard = false
+                                        }
+                                }
                         }
                     }
                     .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
-                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage)
+                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage, showRulesView: $showRulesView, showExitConfirmation: $showExitConfirmation)
                     BottomPartGameView()
                         .environmentObject(gbvm)
                 }
@@ -39,9 +53,19 @@ struct GameView: View {
                                 .onTapGesture {
                                     gbvm.isShowQuestionLayout = false
                                 }
+                        } else if showRulesView {
+                            RulesView()
+                                .onTapGesture {
+                                    showRulesView = false
+                                }
+                                .edgesIgnoringSafeArea(.all)
+                        } else if showExitConfirmation {
+                            ExitConfirmation(showLandingPage: $showLandingPage, showExitConfirmation: $showExitConfirmation)
+                                .edgesIgnoringSafeArea(.all)
                         }
                     }
                 )
+                .scaledToFit()
             }
         }
         .padding()
@@ -58,7 +82,8 @@ struct GameView_Previews: PreviewProvider {
 
 struct SmallCardView: View {
     @StateObject var gbvm: GameBoardViewModel
-    var food: Food
+    let food: Food
+    @Binding var showLargeCard: Bool
     
     var body: some View {
         HStack(){
@@ -71,11 +96,7 @@ struct SmallCardView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("Purple"), lineWidth: 4))
-                //                .onLongPressGesture(minimumDuration: 2){
-                //                    print("tapped")
-                //                }
                     .onTapGesture {
-                        print("tapped")
                         withAnimation(.easeInOut(duration: 0.5)) {
                             gbvm.eliminateCard(food: food)
                         }
@@ -96,23 +117,40 @@ struct SmallCardView: View {
     }
 }
 
+struct LargeCardView: View {
+    @Binding var food: Food?
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.8)
+            Image(food?.image ?? "")
+                .resizable()
+                .background(Color("LightYellow"))
+        }
+        .cornerRadius(40)
+        .padding(40)
+    }
+}
+
 struct CustomNavigationBar: View{
     @StateObject var gbvm: GameBoardViewModel
-    @Binding var showLandingPage:Bool
+    @Binding var showLandingPage: Bool
+    @Binding var showRulesView: Bool
+    @Binding var showExitConfirmation: Bool
     
     var body: some View {
         NavigationLink("", destination: HunchMealView())
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button (action: {
-                        showLandingPage = true
+                        showExitConfirmation = true
                     }){
                         CustomNavigationToolBarImage(image: "arrow.left.square.fill")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
-                        print("Question Tapped")
+                        showRulesView = true
                     }){
                         CustomNavigationToolBarImage(image: "questionmark.square.fill")
                     }
@@ -155,5 +193,60 @@ struct CustomToolBarCountdownTimer: View {
                 RoundedRectangle(cornerRadius: 7)
                     .stroke(Color("Purple"), lineWidth: 4))
             .imageScale(.large)
+    }
+}
+
+struct RulesView: View {
+    let rules: [Rules] = RulesList.lists
+    
+    var body: some View {
+        ZStack {
+            Color.yellow
+            VStack {
+                Text("Rules of the Game")
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(Array(rules.enumerated()), id: \.1) { index, rule in
+                        Text("\(index + 1). \(rule.rules)")
+                    }
+                }
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 140, leading: 20, bottom: 0, trailing: 20))
+        }
+    }
+}
+
+struct ExitConfirmation: View {
+    @Binding var showLandingPage: Bool
+    @Binding var showExitConfirmation: Bool
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.8)
+            VStack {
+                VStack {
+                    Text("Are you sure you want to exit?")
+                    Text("All of your progress will be resetted")
+                }
+                HStack(spacing: 40) {
+                    Text("Dismiss")
+                        .font(.system(size: 16, design: .rounded).weight(.bold))
+                        .padding(20)
+                        .foregroundColor(Color("Yellow"))
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                        .onTapGesture {
+                            showExitConfirmation = false
+                        }
+                    Text("Exit")
+                        .font(.system(size: 16, design: .rounded).weight(.bold))
+                        .padding(20)
+                        .foregroundColor(Color("Yellow"))
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                        .onTapGesture {
+                            showLandingPage = true
+                        }
+                }
+            }
+        }
     }
 }

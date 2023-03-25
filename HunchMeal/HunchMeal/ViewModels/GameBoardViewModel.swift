@@ -17,6 +17,7 @@ final class GameBoardViewModel: ObservableObject {
     @Published var secondsRemaining: Int = 300
     @Published var questions: [Question]
     @Published var isShowQuestionLayout: Bool = false
+    @Published var isShowLargeCardView: Bool = false
     @Published var isAsked: Bool = false
     @Published var botAnswer: String = ""
     private var timer: Timer?
@@ -109,13 +110,15 @@ final class GameBoardViewModel: ObservableObject {
             }
         }
         
-        if (secondsRemaining == 0 && count != foodDatas.count - 1) {
+        if ((secondsRemaining == 0 && count < foodDatas.count) || (secondsRemaining == 0 && checkAnswer() == false) || (count == foodDatas.count - 1 && checkAnswer() == false)) {
+            print("You Lose")
             isWin = false
+            stopTimer()
         }
         if (count == foodDatas.count - 1 && checkAnswer() == true) {
+            print("You Win")
             isWin = true
-        } else {
-            isWin = false
+            stopTimer()
         }
     }
     
