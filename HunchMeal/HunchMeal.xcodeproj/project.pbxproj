@@ -24,6 +24,7 @@
 		15DB122929C9BF6100333F16 /* HunchMealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB122829C9BF6100333F16 /* HunchMealUITests.swift */; };
 		15DB122B29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */; };
 		15E2B8FB29CD8721000BB713 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2B8FA29CD8721000BB713 /* Rules.swift */; };
+		15FEF4CC29CEF0DB00A16A15 /* BottomPartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FEF4CB29CEF0DB00A16A15 /* BottomPartGameView.swift */; };
 		26CAF0A429CB5DD200202514 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAF0A329CB5DD200202514 /* GameView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		15DB122829C9BF6100333F16 /* HunchMealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITests.swift; sourceTree = "<group>"; };
 		15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		15E2B8FA29CD8721000BB713 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		15FEF4CB29CEF0DB00A16A15 /* BottomPartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPartGameView.swift; sourceTree = "<group>"; };
 		26CAF0A329CB5DD200202514 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 			children = (
 				15DB120F29C9BF6000333F16 /* HunchMealView.swift */,
 				26CAF0A329CB5DD200202514 /* GameView.swift */,
+				15FEF4CB29CEF0DB00A16A15 /* BottomPartGameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				15B6137829CAF62B00CB0D1E /* FoodProcesses.swift in Sources */,
 				15B6138129CAF9FA00CB0D1E /* GameBoardViewModel.swift in Sources */,
 				15B6138329CB12D900CB0D1E /* Question.swift in Sources */,
+				15FEF4CC29CEF0DB00A16A15 /* BottomPartGameView.swift in Sources */,
 				15DB120E29C9BF6000333F16 /* HunchMealApp.swift in Sources */,
 				15B6137229CAF5A600CB0D1E /* Food.swift in Sources */,
 				15B6137429CAF5F800CB0D1E /* FoodType.swift in Sources */,

@@ -22,24 +22,26 @@ struct GameView: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(gbvm.foodDatas, id: \.id) { food in
                             VStack {
-                                SmallCardView(photo: food.image)
+                                SmallCardView(gbvm: gbvm, food: food)
                             }
                         }
                     }
                     .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
                     CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage)
-                    HStack(alignment: .bottom){
-                        VStack(alignment: .leading){
-                            Text("Turn \(String(format: "%02d", gbvm.totalGuess + 1))")
-                                .font(.system(size:32, design: .rounded).weight(.bold))
-                                .foregroundColor(Color("Yellow"))
-                            AskQuestionButton()
-                        }
-                        Image("SusCat")
-                            .resizable()
-                            .frame(width: 122, height: 160)
-                    }
+                    BottomPartGameView()
+                        .environmentObject(gbvm)
                 }
+                .overlay(
+                    Group {
+                        if gbvm.isShowQuestionLayout {
+                            QuestionLayout()
+                                .environmentObject(gbvm)
+                                .onTapGesture {
+                                    gbvm.isShowQuestionLayout = false
+                                }
+                        }
+                    }
+                )
             }
         }
         .padding()
@@ -55,21 +57,41 @@ struct GameView_Previews: PreviewProvider {
 }
 
 struct SmallCardView: View {
-    var photo: String
+    @StateObject var gbvm: GameBoardViewModel
+    var food: Food
     
     var body: some View {
         HStack(){
-            Image(photo)
-                .resizable()
+            if !food.isElim {
+                Image(food.image)
+                    .resizable()
+                    .padding(6)
+                    .frame(width: 66.75, height: 89)
+                    .background(Color("LightYellow"))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("Purple"), lineWidth: 4))
+                //                .onLongPressGesture(minimumDuration: 2){
+                //                    print("tapped")
+                //                }
+                    .onTapGesture {
+                        print("tapped")
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            gbvm.eliminateCard(food: food)
+                        }
+                    }
+                    .rotation3DEffect(.degrees(food.isElim ? 180 : 0), axis: (x: 0, y:1, z:0))
+            } else {
+                VStack {
+                }
                 .padding(6)
                 .frame(width: 66.75, height: 89)
                 .background(Color("LightYellow"))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color("Purple"), lineWidth: 4))
-                .onLongPressGesture(minimumDuration: 2){
-                    print("tapped")
-                }
+                .rotation3DEffect(.degrees(food.isElim ? 180 : 0), axis: (x: 0, y:1, z:0))
+            }
         }
     }
 }
@@ -133,19 +155,5 @@ struct CustomToolBarCountdownTimer: View {
                 RoundedRectangle(cornerRadius: 7)
                     .stroke(Color("Purple"), lineWidth: 4))
             .imageScale(.large)
-    }
-}
-
-struct AskQuestionButton: View {
-    var body: some View {
-        Button (action: {
-            print("Ask a question tapped")
-        }){
-            Text("Ask a Question")
-                .font(.system(size: 16, design: .rounded).weight(.bold))
-                .frame(width: 204, height: 51)
-                .foregroundColor(Color("Yellow"))
-                .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
-        }
     }
 }
