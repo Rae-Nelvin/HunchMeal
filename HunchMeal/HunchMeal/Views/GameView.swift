@@ -72,6 +72,7 @@ struct GameView: View {
                     }
                 )
                 .scaledToFit()
+                .padding(.top, 20)
             }
         }
         .padding()
@@ -251,6 +252,7 @@ struct ExitConfirmation: View {
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
+                .padding(EdgeInsets(top: 0, leading: -10, bottom: 0, trailing: -10))
             VStack {
                 VStack {
                     Text("Give up and return\nto main menu?")

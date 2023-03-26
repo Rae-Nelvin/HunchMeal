@@ -98,9 +98,12 @@ struct DefaultBottomPartView: View {
                     .foregroundColor(Color("Yellow"))
                 AskQuestionButton(gbvm: gbvm)
             }
-            Image("SusCat")
+            .padding(.bottom, 30)
+            
+            Image("Cat-Thief-Room")
                 .resizable()
-                .frame(width: 122, height: 160)
+                .frame(width: 115, height: 198)
+                .offset(y: 10)
         }
     }
 }

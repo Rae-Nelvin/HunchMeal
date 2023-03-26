@@ -102,11 +102,15 @@ struct EndView: View {
                         Text("Type")
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
-                        
-                        // Taste of Food object
+                        // Type of Food object
                         Text(gbvm.foodAnswer.type.type)
                             .font(.system(size: 16, design: .rounded).weight(.bold))
-                            .frame(width: 90, height: 35)
+                            .multilineTextAlignment(.center)
+                            .frame(width: 90)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 5)
+                            .padding(.bottom, 5)
+                            .lineLimit(nil)
                             .foregroundColor(Color("Purple"))
                             .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
                     }
@@ -117,34 +121,29 @@ struct EndView: View {
                         Text("Taste")
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
+                            .padding(.bottom, -2)
                         
                         LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())]) {
                             ForEach(gbvm.foodAnswer.taste, id: \.id) { taste in
                                 Text(taste.taste)
                                     .font(.system(size: 16, design: .rounded).weight(.bold))
-                                    .frame(width: 90, height: 35)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 90)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.top, 5)
+                                    .padding(.bottom, 5)
+                                    .lineLimit(nil)
                                     .foregroundColor(Color("Purple"))
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
                             }
+                            .padding(.top, 28)
+                            .padding(.leading, 10)
+                            .padding(.bottom, 10)
                         }
-//                        // Nanti pake LazyHGrid aja le
-//                        HStack(){
-//                            // Taste of Food object
-//                            Text("Tasty")
-//                                .font(.system(size: 16, design: .rounded).weight(.bold))
-//                                .frame(width: 90, height: 35)
-//                                .foregroundColor(Color("Purple"))
-//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-//
-//                            Text("Tasty")
-//                                .font(.system(size: 16, design: .rounded).weight(.bold))
-//                                .frame(width: 90, height: 35)
-//                                .foregroundColor(Color("Purple"))
-//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-//
-//                        }
-
+//                        .padding(.bottom, 10)
                     }
+                    .padding(.trailing, 30)
+
                 }
                 .padding(.bottom, 20)
                 
@@ -157,7 +156,12 @@ struct EndView: View {
                         // Process of Food object
                         Text(gbvm.foodAnswer.cookProcesses.process)
                             .font(.system(size: 16, design: .rounded).weight(.bold))
-                            .frame(width: 90, height: 35)
+                            .multilineTextAlignment(.center)
+                            .frame(width: 90)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding(.top, 5)
+                            .padding(.bottom, 5)
+                            .lineLimit(nil)
                             .foregroundColor(Color("Purple"))
                             .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
                     }
@@ -168,33 +172,28 @@ struct EndView: View {
                         Text("Ingredients")
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
+                            .padding(.bottom, -2)
+
                         
                         LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())]) {
                             ForEach(gbvm.foodAnswer.ingredient, id: \.id) { ingredient in
                                 Text(ingredient.ingredient)
                                     .font(.system(size: 16, design: .rounded).weight(.bold))
-                                    .frame(width: 90, height: 35)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 90)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .padding(.top, 5)
+                                    .padding(.bottom, 5)
+                                    .lineLimit(nil)
                                     .foregroundColor(Color("Purple"))
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
                             }
-                        }
-                        
-//                        HStack(){
-//                            // Ingredients of Food object
-//                            Text("Fruits")
-//                                .font(.system(size: 16, design: .rounded).weight(.bold))
-//                                .frame(width: 90, height: 35)
-//                                .foregroundColor(Color("Purple"))
-//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-//
-//                            Text("Dairy")
-//                                .font(.system(size: 16, design: .rounded).weight(.bold))
-//                                .frame(width: 90, height: 35)
-//                                .foregroundColor(Color("Purple"))
-//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-//
-//                        }
+                            .padding(.top, 28)
+                            .padding(.leading, 10)
+                            .padding(.bottom, 10)
 
+                        }
+                        .padding(.trailing, 30)
                     }
                 }
                 CustomBackHomeView(showLandingPage: $showLandingPage)
@@ -215,15 +214,15 @@ struct catView: View{
     
     var body: some View {
         if win == "Win" {
-            Image("WinCat")
+            Image("Cat-Head-Smug")
                 .resizable()
                 .frame(width: 193, height: 140)
-                .offset(x: 120, y: 130)
+                .offset(x: 150, y: 130)
         } else {
-            Image("LoseCat")
+            Image("Cat-Head-Smug")
                 .resizable()
                 .frame(width: 193, height: 140)
-                .offset(x: 120, y: 130)
+                .offset(x: 150, y: 130)
         }
     }
 }
