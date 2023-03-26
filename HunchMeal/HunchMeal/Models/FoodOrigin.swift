@@ -27,6 +27,8 @@ struct FoodOriginLists {
         FoodOrigin(origin: "Cirebon"), // 10
         FoodOrigin(origin: "Bali"),
         FoodOrigin(origin: "Jawa"),
-        FoodOrigin(origin: "Sunda")
+        FoodOrigin(origin: "Sunda"),
+        FoodOrigin(origin: "Madium"),
+        FoodOrigin(origin: "Jakarta"), // 15
     ]
 }

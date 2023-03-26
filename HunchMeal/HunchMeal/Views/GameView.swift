@@ -22,7 +22,7 @@ struct GameView: View {
     var body: some View {
         ZStack(){
             BackgroundYellowCircle()
-            if showLandingPage{
+            if showLandingPage {
                 HunchMealView()
             } else if gbvm.isWin != "" {
                 EndView()

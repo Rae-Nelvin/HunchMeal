@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct HunchMealView: View {
-    @State var navigated = false
-
     var body: some View {
         NavigationStack(){
             ZStack() {
@@ -20,14 +18,12 @@ struct HunchMealView: View {
                     NavigationLink(destination: GameView()){
                         ButtonText(text: "PLAY")
                     }
-                    
                 }
             }
             .padding()
             .background(Color("Purple"))
         }
         .navigationBarBackButtonHidden(true)
-
     }
 }
 

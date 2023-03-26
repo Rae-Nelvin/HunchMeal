@@ -27,17 +27,17 @@ final class GameBoardViewModel: ObservableObject {
         var datas: [Food] = []
         var selectedObjectIds = Set<UUID>()
         
-        for _ in 0..<20 {
+        repeat {
             let shuffledObjects = FoodLists.lists.shuffled()
             let data = shuffledObjects.prefix(1)[0]
             if !selectedObjectIds.contains(data.id) {
                 datas.append(data)
                 selectedObjectIds.insert(data.id)
             }
-        }
+        } while(datas.count < 20)
         let shuffledObjects = datas.shuffled()
         let data = shuffledObjects.prefix(1)[0]
-        self.foodDatas = FoodLists.lists
+        self.foodDatas = datas
         self.foodAnswer = data
         self.questions = []
         self.flag = countFlag()
@@ -50,7 +50,6 @@ final class GameBoardViewModel: ObservableObject {
         
         if (flag > 0) {
             flag -= 1
-            // Generate 1 correct question
             repeat {
                 randomNumber = Int.random(in: 1...5)
                 switch randomNumber {
@@ -103,7 +102,6 @@ final class GameBoardViewModel: ObservableObject {
         checkWin()
     }
     
-    // Win Conditional
     func checkWin() {
         var count: Int = 0
         for i in 0..<foodDatas.count {
@@ -168,7 +166,6 @@ final class GameBoardViewModel: ObservableObject {
     private func getAmountRandomQuestions() {
         var question: Question = Question(part1: "", part2: "")
         if(flag > 0) {
-            // Generate 3 random questions
             for _ in 0..<3 {
                 repeat {
                     let randomNumber = Int.random(in: 1...5)
@@ -224,7 +221,6 @@ final class GameBoardViewModel: ObservableObject {
     
     private func getAnswer(question: Question) -> Bool {
         if (question.part2 == foodAnswer.type.type) {
-            print("true")
             return true
         }
         if (foodAnswer.origin.contains(where: { $0.origin == question.part2 } )) {

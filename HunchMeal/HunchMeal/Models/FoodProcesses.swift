@@ -20,5 +20,7 @@ struct FoodProcessesList {
         FoodProcesses(process: "Pasteurized"),
         FoodProcesses(process: "Steamed"),
         FoodProcesses(process: "Pan Fried"), // 5
+        FoodProcesses(process: "Mixed Together"),
+        FoodProcesses(process: "Fermented")
     ]
 }
