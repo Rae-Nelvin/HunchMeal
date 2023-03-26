@@ -47,7 +47,7 @@ struct EndView: View {
                         // based on winning status of the user
                         if true {
                             // parameter dibind sm winning status
-                            catView(win: true)
+                            catView(win: false)
                         }
 
                     }
@@ -102,7 +102,7 @@ struct EndView: View {
                 }
                 Text("Es Pisang Hijau")
                     .multilineTextAlignment(.center)
-                    .font(.system(size: 48, design: .rounded).weight(.bold))
+                    .font(.system(size: 32, design: .rounded).weight(.bold))
                     .foregroundColor(Color("Yellow"))
                     .padding(.top, 60)
                     .padding(.bottom, 10)
@@ -184,10 +184,9 @@ struct EndView: View {
                                 .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
 
                         }
-
                     }
                 }
-
+                CustomBackHomeView(showLandingPage: $showLandingPage)
             }
         }
         .background(Color(("Purple")))
@@ -228,10 +227,32 @@ struct textWinningView: View{
                 .font(.system(size: 48, design: .rounded).weight(.bold))
                 .foregroundColor(Color("Yellow"))
         } else {
-            Text("You did'nt\nget it...")
+            Text("You didn't\nget it...")
                 .multilineTextAlignment(.center)
                 .font(.system(size: 48, design: .rounded).weight(.bold))
                 .foregroundColor(Color("Yellow"))
         }
     }
 }
+
+struct CustomBackHomeView: View{
+    @Binding var showLandingPage: Bool
+
+    
+    var body: some View {
+        Button (action: {
+            showLandingPage = true
+        }){
+            Text("Back to Home")
+                .font(.system(size: 24, design: .rounded).weight(.bold))
+                .foregroundColor(Color("Yellow"))
+                .frame(width: 320, height: 50)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color("Yellow"), lineWidth: 4)
+                )
+                .padding(.top, 50)
+        }
+    }
+}
+
