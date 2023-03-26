@@ -44,7 +44,7 @@ struct GameView: View {
                         }
                     }
                     .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
-                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage, showRulesView: $showRulesView, showExitConfirmation: $showExitConfirmation)
+                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage, showRulesView: $showRulesView, showExitConfirmation: $showExitConfirmation, showTimer: true, showHintButton: true)
                     BottomPartGameView()
                         .environmentObject(gbvm)
                 }
@@ -125,10 +125,18 @@ struct LargeCardView: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.8)
-            Image(food?.image ?? "")
-                .resizable()
-                .background(Color("LightYellow"))
+            Color("LightYellow")
+            VStack {
+                Image(food?.image ?? "")
+                    .resizable()
+                    .background(Color("LightYellow"))
+                Text(food?.name ?? "")
+                    .font(.system(size: 24, design: .rounded).weight(.bold))
+                    .foregroundColor(Color("Purple"))
+                    .frame(height: 80)
+
+
+            }
         }
         .cornerRadius(40)
         .padding(40)
@@ -140,7 +148,7 @@ struct CustomNavigationBar: View{
     @Binding var showLandingPage: Bool
     @Binding var showRulesView: Bool
     @Binding var showExitConfirmation: Bool
-    var showTimerButton: Bool
+    var showTimer: Bool
     var showHintButton: Bool
     // Nanti kl uda ada logic menangnya, passing status true/false ya buat endView
     
@@ -154,16 +162,21 @@ struct CustomNavigationBar: View{
                         CustomNavigationToolBarImage(image: "arrow.left.square.fill")
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button(action: {
-                        showRulesView = true
-                    }){
-                        CustomNavigationToolBarImage(image: "questionmark.square.fill")
+                if showTimer{
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button(action: {
+                            showRulesView = true
+                        }){
+                            CustomNavigationToolBarImage(image: "questionmark.square.fill")
+                        }
                     }
                 }
-                ToolbarItem(placement: .principal){
-                    CustomToolBarCountdownTimer(gbvm: gbvm)
+                if showHintButton {
+                    ToolbarItem(placement: .principal){
+                        CustomToolBarCountdownTimer(gbvm: gbvm)
+                    }
                 }
+                
             }
             .navigationBarBackButtonHidden(true)
             .onAppear() {
