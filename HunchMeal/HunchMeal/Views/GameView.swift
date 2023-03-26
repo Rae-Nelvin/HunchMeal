@@ -220,12 +220,18 @@ struct RulesView: View {
     
     var body: some View {
         ZStack {
-            Color.yellow
+            Color("LightYellow")
             VStack {
                 Text("Rules of the Game")
+                    .font(.system(size: 24, design: .rounded).weight(.bold))
+                    .foregroundColor(Color("Purple"))
+                    .padding(.bottom, 10)
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(Array(rules.enumerated()), id: \.1) { index, rule in
                         Text("\(index + 1). \(rule.rules)")
+                            .font(.system(size: 16, design: .rounded).weight(.bold))
+                            .foregroundColor(Color("Purple"))
+                            .padding(.bottom, 8)
                     }
                 }
                 Spacer()
@@ -241,31 +247,38 @@ struct ExitConfirmation: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.8)
+            Color.black.opacity(0.7)
             VStack {
                 VStack {
-                    Text("Are you sure you want to exit?")
-                    Text("All of your progress will be resetted")
+                    Text("Give up and return\nto main menu?")
                 }
+                .font(.system(size: 24, design: .rounded).weight(.bold))
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color("Purple"))
+                
                 HStack(spacing: 40) {
-                    Text("Dismiss")
+                    Text("Cancel")
                         .font(.system(size: 16, design: .rounded).weight(.bold))
-                        .padding(20)
-                        .foregroundColor(Color("Yellow"))
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                        .frame(width: 90, height: 35)
+                        .foregroundColor(Color("Purple"))
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Purple"), lineWidth: 4))
                         .onTapGesture {
                             showExitConfirmation = false
                         }
-                    Text("Exit")
+                    Text("Give Up")
                         .font(.system(size: 16, design: .rounded).weight(.bold))
-                        .padding(20)
+                        .frame(width: 90, height: 35)
                         .foregroundColor(Color("Yellow"))
-                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                        .background(RoundedRectangle(cornerRadius: 10).fill(Color("Purple")))
                         .onTapGesture {
                             showLandingPage = true
                         }
+
                 }
+                .padding(.top, 25)
             }
+            .frame(width: 258, height: 159)
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
         }
     }
 }
