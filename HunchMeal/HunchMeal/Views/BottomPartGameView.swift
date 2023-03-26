@@ -35,12 +35,18 @@ struct AskQuestionButton: View {
             gbvm.showQuestions()
             gbvm.isShowQuestionLayout = true
         }){
-            Text("Ask a Question")
-                .font(.system(size: 16, design: .rounded).weight(.bold))
-                .frame(width: 204, height: 51)
-                .foregroundColor(Color("Yellow"))
-                .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+            AskQuestionTitle()
         }
+    }
+}
+
+struct AskQuestionTitle: View {
+    var body: some View {
+        Text("Ask a Question")
+            .font(.system(size: 16, design: .rounded).weight(.bold))
+            .frame(width: 204, height: 51)
+            .foregroundColor(Color("Yellow"))
+            .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
     }
 }
 
@@ -51,18 +57,16 @@ struct QuestionLayout: View {
     var body: some View {
         ZStack {
             Color.black.opacity(0.8)
+                .padding(EdgeInsets(top: 0, leading: -10, bottom: 0, trailing: -10))
             VStack(alignment: .center) {
                 LazyHGrid(rows: rows, spacing: 20) {
                     ForEach(gbvm.questions, id: \.id) { question in
                         QuestionsButton(question: question, gbvm: gbvm)
-                        //                            .transition(.move(edge: .trailing))
-                        //                            .animation(.default, value: question)
                     }
                 }
             }
         }
         .onTapGesture {
-            
         }
         .edgesIgnoringSafeArea(.all)
     }
@@ -78,12 +82,20 @@ struct QuestionsButton: View {
             gbvm.isAsked = true
             gbvm.isShowQuestionLayout = false
         }){
-            Text("\(question.part1) \(question.part2)")
-                .font(.system(size: 16, design: .rounded).weight(.bold))
-                .padding(20)
-                .foregroundColor(Color("Yellow"))
-                .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+            QuestionsText(question: question)
         }
+    }
+}
+
+struct QuestionsText: View {
+    var question: Question
+    
+    var body: some View {
+        Text("\(question.part1) \(question.part2)")
+            .font(.system(size: 16, design: .rounded).weight(.bold))
+            .padding(20)
+            .foregroundColor(Color("Yellow"))
+            .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
     }
 }
 
@@ -99,7 +111,6 @@ struct DefaultBottomPartView: View {
                 AskQuestionButton(gbvm: gbvm)
             }
             .padding(.bottom, 30)
-            
             Image("Cat-Thief-Room")
                 .resizable()
                 .frame(width: 115, height: 198)
@@ -113,22 +124,30 @@ struct AskedBottomPartView: View {
     
     var body: some View {
         HStack(alignment: .center){
-            Text(gbvm.botAnswer)
-                .font(.system(size: 16, design: .rounded).weight(.bold))
-                .padding(20)
-                .foregroundColor(Color("Yellow"))
-                .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        gbvm.isAsked = false
-                    }
-                }
-                .padding(.top, 35)
+            BotAnswerView(gbvm: gbvm)
             Spacer()
             Image("SusCat")
                 .resizable()
                 .frame(width: 122, height: 160)
         }
         .scaledToFit()
+    }
+}
+
+struct BotAnswerView: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Text(gbvm.botAnswer)
+            .font(.system(size: 16, design: .rounded).weight(.bold))
+            .padding(20)
+            .foregroundColor(Color("Yellow"))
+            .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    gbvm.isAsked = false
+                }
+            }
+            .padding(.top, 35)
     }
 }

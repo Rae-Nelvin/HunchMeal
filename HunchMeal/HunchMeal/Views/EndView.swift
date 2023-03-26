@@ -13,56 +13,27 @@ struct EndView: View {
     
     var body: some View {
         ZStack {
-            Circle()
-                .foregroundColor(Color("Purple"))
-                .frame(width: 753, height: 753)
-                .fixedSize()
-                .offset(y: -120)
+            PurpleCircleView()
             if showLandingPage {
                 HunchMealView()
             } else {
                 ScrollView(.vertical) {
                     VStack {
                         ZStack {
-                            // Name of Food object
-                            Text(gbvm.foodAnswer.name)
-                                .font(.system(size: 24, design: .rounded).weight(.bold))
-                                .frame(width: 267, height: 70)
-                                .foregroundColor(Color("Purple"))
-                                .background(Color("LightYellow"))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10).stroke(Color("Purple"), lineWidth: 4)
-                                )
-                                .offset(y: 165)
-                            
-                            // Image of Food object
-                            Image(gbvm.foodAnswer.image)
-                                .resizable()
-                                .frame(width: 267, height: 280)
-                                .background(Color("LightYellow"))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color("Purple"), lineWidth: 4)
-                                )
-                            // based on winning status of the user
-                            catView(win: gbvm.isWin)
+                            FoodName(gbvm: gbvm)
+                            FoodImage(gbvm: gbvm)
+                            CatView(win: gbvm.isWin)
                         }
                     }
                     Spacer(minLength: 90)
                     VStack {
-                        textWinningView(win: false)
+                        TextWinningView(win: false)
                         HStack(){
-                            TotalTime(gbvm: gbvm, isTime: false)
-                            TotalTime(gbvm: gbvm, isTime: true)
+                            PlayerStatus(gbvm: gbvm, isTime: false, title: "Total \n Time")
+                            PlayerStatus(gbvm: gbvm, isTime: true, title: "Question Asked")
                         }
-                        Text(gbvm.foodAnswer.name)
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 32, design: .rounded).weight(.bold))
-                            .foregroundColor(Color("Yellow"))
-                            .padding(.top, 60)
-                            .padding(.bottom, 10)
+                        SecondFoodName(gbvm: gbvm)
                         FoodAnswerDetails(gbvm: gbvm)
-                            .fixedSize()
                         CustomBackHomeView(showLandingPage: $showLandingPage)
                     }
                 }
@@ -80,13 +51,48 @@ struct EndView_Previews: PreviewProvider {
     }
 }
 
-struct HideNavBar: View {
+struct PurpleCircleView: View {
     var body: some View {
-        NavigationLink("", destination: HunchMealView())
+        Circle()
+            .foregroundColor(Color("Purple"))
+            .frame(width: 753, height: 753)
+            .fixedSize()
+            .offset(y: -120)
     }
 }
 
-struct catView: View{
+struct FoodName: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Text(gbvm.foodAnswer.name)
+            .font(.system(size: 24, design: .rounded).weight(.bold))
+            .frame(width: 267, height: 70)
+            .foregroundColor(Color("Purple"))
+            .background(Color("LightYellow"))
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(Color("Purple"), lineWidth: 4)
+            )
+            .offset(y: 165)
+    }
+}
+
+struct FoodImage: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Image(gbvm.foodAnswer.image)
+            .resizable()
+            .frame(width: 267, height: 280)
+            .background(Color("LightYellow"))
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color("Purple"), lineWidth: 4)
+            )
+    }
+}
+
+struct CatView: View{
     var win: String
     
     var body: some View {
@@ -104,7 +110,7 @@ struct catView: View{
     }
 }
 
-struct textWinningView: View{
+struct TextWinningView: View{
     var win: Bool
     
     var body: some View {
@@ -122,9 +128,22 @@ struct textWinningView: View{
     }
 }
 
+struct SecondFoodName: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Text(gbvm.foodAnswer.name)
+            .multilineTextAlignment(.center)
+            .font(.system(size: 32, design: .rounded).weight(.bold))
+            .foregroundColor(Color("Yellow"))
+            .padding(.top, 60)
+            .padding(.bottom, 10)
+    }
+}
+
 struct CustomBackHomeView: View{
     @Binding var showLandingPage: Bool
-
+    
     var body: some View {
         Button (action: {
             showLandingPage = true
@@ -139,51 +158,63 @@ struct CustomBackHomeView: View{
                 )
                 .padding(.top, 50)
         }
+        .fixedSize()
     }
 }
 
-struct TotalTime: View {
+struct PlayerStatus: View {
     @StateObject var gbvm: GameBoardViewModel
     let isTime: Bool
+    let title: String
     
     var body: some View {
-        if isTime {
-            VStack(){
-                Text("Total \n Time")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 16, design: .rounded).weight(.bold))
-                    .foregroundColor(Color(.white))
-                    .padding(.bottom, 4)
-                
-                Text("\(gbvm.countSpentTime(secondsRemaing:gbvm.secondsRemaining, totalTime: 300) / 60) : \(String(format: "%02d", gbvm.countSpentTime(secondsRemaing:gbvm.secondsRemaining, totalTime: 300) % 60))")
-                    .font(.system(size: 32, design: .rounded).weight(.bold))
-                    .foregroundColor(Color("Yellow"))
+        VStack(){
+            PlayerStatusTitle(title: title)
+            if isTime {
+                TotalTimeSeconds(gbvm: gbvm)
+            } else {
+                PlayerStatusQuestionsAsked(gbvm: gbvm)
             }
-            .frame(width: 115, height: 112)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color("Yellow"), lineWidth: 4)
-            )
-            .padding()
-        }else {
-            VStack(){
-                Text("Question Asked")
-                    .multilineTextAlignment(.center)
-                    .font(.system(size: 16, design: .rounded).weight(.bold))
-                    .foregroundColor(Color(.white))
-                    .padding(.bottom, 4)
-                
-                Text("\(gbvm.totalGuess)")
-                    .font(.system(size: 32, design: .rounded).weight(.bold))
-                    .foregroundColor(Color("Yellow"))
-            }
-            .frame(width: 115, height: 112)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color("Yellow"), lineWidth: 4)
-            )
-            .padding()
+            
         }
+        .frame(width: 115, height: 112)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color("Yellow"), lineWidth: 4)
+        )
+        .padding()
+    }
+}
+
+struct PlayerStatusTitle: View {
+    let title: String
+    
+    var body: some View {
+        Text(title)
+            .multilineTextAlignment(.center)
+            .font(.system(size: 16, design: .rounded).weight(.bold))
+            .foregroundColor(Color(.white))
+            .padding(.bottom, 4)
+    }
+}
+
+struct TotalTimeSeconds: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Text("\(gbvm.countSpentTime(secondsRemaing:gbvm.secondsRemaining, totalTime: 300) / 60) : \(String(format: "%02d", gbvm.countSpentTime(secondsRemaing:gbvm.secondsRemaining, totalTime: 300) % 60))")
+            .font(.system(size: 32, design: .rounded).weight(.bold))
+            .foregroundColor(Color("Yellow"))
+    }
+}
+
+struct PlayerStatusQuestionsAsked: View {
+    @StateObject var gbvm: GameBoardViewModel
+    
+    var body: some View {
+        Text("\(gbvm.totalGuess)")
+            .font(.system(size: 32, design: .rounded).weight(.bold))
+            .foregroundColor(Color("Yellow"))
     }
 }
 
@@ -194,69 +225,101 @@ struct FoodAnswerDetails: View {
         VStack(alignment: .center, spacing: 20) {
             HStack(alignment: .top, spacing: 50){
                 VStack() {
-                    FoodAnswerDetailText(text: "Taste")
-                    Text(gbvm.foodAnswer.type.type)
-                        .font(.system(size: 16, design: .rounded).weight(.bold))
-                        .multilineTextAlignment(.center)
-                        .frame(width: 90)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
-                        .lineLimit(nil)
-                        .foregroundColor(Color("Purple"))
-                        .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+                    FoodAnswerDetailsText(text: "Type")
+                    FoodAnswerDetailsType(food: gbvm.foodAnswer)
                 }
                 VStack(spacing: 15){
-                    FoodAnswerDetailText(text: "Taste")
-                    VStack(alignment: .center) {
-                        ForEach(gbvm.foodAnswer.taste, id: \.id) { taste in
-                            Text(taste.taste)
-                                .font(.system(size: 16, design: .rounded).weight(.bold))
-                                .multilineTextAlignment(.center)
-                                .frame(width: 90)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
-                                .lineLimit(nil)
-                                .foregroundColor(Color("Purple"))
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-                        }
-                    }
+                    FoodAnswerDetailsText(text: "Taste")
+                    FoodAnswerDetailsTaste(food: gbvm.foodAnswer)
                 }
             }
             HStack(alignment: .top, spacing: 50){
                 VStack() {
-                    FoodAnswerDetailText(text: "Process")
-                    Text(gbvm.foodAnswer.cookProcesses.process)
-                        .font(.system(size: 16, design: .rounded).weight(.bold))
-                        .multilineTextAlignment(.center)
-                        .frame(width: 90)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
-                        .lineLimit(nil)
-                        .foregroundColor(Color("Purple"))
-                        .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+                    FoodAnswerDetailsText(text: "Process")
+                    FoodAnswerDetailsProcess(food: gbvm.foodAnswer)
                 }
                 VStack(spacing: 15){
-                    FoodAnswerDetailText(text: "Ingredients")
-                    VStack(alignment: .center) {
-                        ForEach(gbvm.foodAnswer.ingredient, id: \.id) { ingredient in
-                            Text(ingredient.ingredient)
-                                .font(.system(size: 16, design: .rounded).weight(.bold))
-                                .multilineTextAlignment(.center)
-                                .frame(width: 90)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
-                                .lineLimit(nil)
-                                .foregroundColor(Color("Purple"))
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-                        }
-                    }
+                    FoodAnswerDetailsText(text: "Ingredients")
+                    FoodAnswerDetailsIngredients(food: gbvm.foodAnswer)
                 }
             }
         }
     }
 }
 
-struct FoodAnswerDetailText: View {
+struct FoodAnswerDetailsType: View {
+    let food: Food
+    
+    var body: some View {
+        Text(food.type.type)
+            .font(.system(size: 16, design: .rounded).weight(.bold))
+            .multilineTextAlignment(.center)
+            .frame(width: 90)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
+            .lineLimit(nil)
+            .foregroundColor(Color("Purple"))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+    }
+}
+
+struct FoodAnswerDetailsTaste: View {
+    let food: Food
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            ForEach(food.taste, id: \.id) { taste in
+                Text(taste.taste)
+                    .font(.system(size: 16, design: .rounded).weight(.bold))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 90)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
+                    .lineLimit(nil)
+                    .foregroundColor(Color("Purple"))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+            }
+        }
+    }
+}
+
+struct FoodAnswerDetailsProcess: View {
+    let food: Food
+    
+    var body: some View {
+        Text(food.cookProcesses.process)
+            .font(.system(size: 16, design: .rounded).weight(.bold))
+            .multilineTextAlignment(.center)
+            .frame(width: 90)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
+            .lineLimit(nil)
+            .foregroundColor(Color("Purple"))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+    }
+}
+
+struct FoodAnswerDetailsIngredients: View {
+    let food: Food
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            ForEach(food.ingredient, id: \.id) { ingredient in
+                Text(ingredient.ingredient)
+                    .font(.system(size: 16, design: .rounded).weight(.bold))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 90)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(EdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2))
+                    .lineLimit(nil)
+                    .foregroundColor(Color("Purple"))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+            }
+        }
+    }
+}
+
+struct FoodAnswerDetailsText: View {
     let text: String
     
     var body: some View {
