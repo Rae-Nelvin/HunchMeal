@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Question: Identifiable {
+struct Question: Identifiable, Equatable {
     let id = UUID()
     let part1: String
     let part2: String

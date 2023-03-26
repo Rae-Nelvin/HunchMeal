@@ -12,6 +12,7 @@ struct HunchMealApp: App {
     var body: some Scene {
         WindowGroup {
             HunchMealView()
+                .environmentObject(GameBoardViewModel())
         }
     }
 }

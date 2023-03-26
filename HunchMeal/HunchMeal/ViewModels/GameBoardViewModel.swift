@@ -16,6 +16,10 @@ final class GameBoardViewModel: ObservableObject {
     @Published var foodAnswer: Food
     @Published var secondsRemaining: Int = 300
     @Published var questions: [Question]
+    @Published var isShowQuestionLayout: Bool = false
+    @Published var isShowLargeCardView: Bool = false
+    @Published var isAsked: Bool = false
+    @Published var botAnswer: String = ""
     private var timer: Timer?
     private var flag: Int = 0
     
@@ -36,6 +40,7 @@ final class GameBoardViewModel: ObservableObject {
         self.foodDatas = FoodLists.lists
         self.foodAnswer = data
         self.questions = []
+        self.flag = countFlag()
     }
     
     func showQuestions() {
@@ -43,49 +48,58 @@ final class GameBoardViewModel: ObservableObject {
         questions = []
         var question: Question = Question(part1: "", part2: "")
         
-        // Generate 1 correct question
-        repeat {
-            randomNumber = Int.random(in: 1...5)
-            switch randomNumber {
-            case 1:
-                question = Question(part1: "Is this food type of", part2: foodAnswer.type.type)
-                break
-            case 2:
-                question = Question(part1: "Is this food came from", part2: "\(getRandomFoodOrigin(lists: foodAnswer.origin))")
-                break
-            case 3:
-                question = Question(part1: "Is this food made by", part2: foodAnswer.cookProcesses.process)
-                break
-            case 4:
-                question = Question(part1: "Is this food taste", part2: "\(getRandomFoodTaste(lists: foodAnswer.taste))")
-                break
-            case 5:
-                question = Question(part1: "Is one of this food ingredient a", part2: "\(getRandomFoodIngredient(lists: foodAnswer.ingredient))")
-                break
-            default:
-                break
-            }
-        }  while (checkQuestion(question: question) == false && flag > 0)
         if (flag > 0) {
             flag -= 1
+            // Generate 1 correct question
+            repeat {
+                randomNumber = Int.random(in: 1...5)
+                switch randomNumber {
+                case 1:
+                    question = Question(part1: "Is this food type of", part2: foodAnswer.type.type)
+                    break
+                case 2:
+                    question = Question(part1: "Is this food came from", part2: "\(getRandomFoodOrigin(lists: foodAnswer.origin).origin)")
+                    break
+                case 3:
+                    question = Question(part1: "Is this food made by", part2: foodAnswer.cookProcesses.process)
+                    break
+                case 4:
+                    question = Question(part1: "Is this food taste", part2: "\(getRandomFoodTaste(lists: foodAnswer.taste).taste)")
+                    break
+                case 5:
+                    question = Question(part1: "Is one of this food ingredient a", part2: "\(getRandomFoodIngredient(lists: foodAnswer.ingredient).ingredient)")
+                    break
+                default:
+                    break
+                }
+            }  while (checkQuestion(question: question) == true)
             questions.append(question)
+            print(question)
         }
         getAmountRandomQuestions()
         
         questions = questions.shuffled()
     }
     
-    func askQuestion(question: Question) -> String {
+    func askQuestion(question: Question) {
         totalGuess += 1
         chosenQuestion.append(question)
         if (getAnswer(question: question) == true) {
-            return "Yes it is!"
+            botAnswer = "Yes it is!"
+        } else {
+            botAnswer =  "No, it is not"
         }
-        return "No, it is not"
     }
     
-    func eliminateCard(_ index: Int) {
-        foodDatas[index].isElim = true
+    func eliminateCard(food: Food) {
+        var i: Int = 0
+        while(i < foodDatas.count) {
+            if(food.id == foodDatas[i].id) {
+                foodDatas[i].isElim = true
+                break
+            }
+            i += 1
+        }
         checkWin()
     }
     
@@ -98,13 +112,15 @@ final class GameBoardViewModel: ObservableObject {
             }
         }
         
-        if (secondsRemaining == 0 && count != foodDatas.count - 1) {
+        if ((secondsRemaining == 0 && count < foodDatas.count) || (secondsRemaining == 0 && checkAnswer() == false) || (count == foodDatas.count - 1 && checkAnswer() == false)) {
+            print("You Lose")
             isWin = false
+            stopTimer()
         }
         if (count == foodDatas.count - 1 && checkAnswer() == true) {
+            print("You Win")
             isWin = true
-        } else {
-            isWin = false
+            stopTimer()
         }
     }
     
@@ -125,12 +141,12 @@ final class GameBoardViewModel: ObservableObject {
         timer = nil
     }
     
-    private func countFlag(food: Food) -> Int {
-        flag += food.cookProcesses.process.count
-        flag += food.origin.count
-        flag += food.ingredient.count
-        flag += food.taste.count
-        flag += food.type.type.count
+    private func countFlag() -> Int {
+        flag += foodAnswer.cookProcesses.process.count
+        flag += foodAnswer.origin.count
+        flag += foodAnswer.ingredient.count
+        flag += foodAnswer.taste.count
+        flag += foodAnswer.type.type.count
         return flag
     }
     
@@ -159,7 +175,7 @@ final class GameBoardViewModel: ObservableObject {
                 repeat {
                     let randomNumber = Int.random(in: 1...5)
                     question = getRandomQuestions(randomNumber: randomNumber)
-                } while (checkQuestion(question: question) == false)
+                } while (checkQuestion(question: question) == true)
                 questions.append(question)
             }
         } else {
@@ -167,7 +183,7 @@ final class GameBoardViewModel: ObservableObject {
                 repeat {
                     let randomNumber = Int.random(in: 1...5)
                     question = getRandomQuestions(randomNumber: randomNumber)
-                } while (checkQuestion(question: question) == false)
+                } while (checkQuestion(question: question) == true)
                 questions.append(question)
             }
         }
@@ -210,6 +226,7 @@ final class GameBoardViewModel: ObservableObject {
     
     private func getAnswer(question: Question) -> Bool {
         if (question.part2 == foodAnswer.type.type) {
+            print("true")
             return true
         }
         if (foodAnswer.origin.contains(where: { $0.origin == question.part2 } )) {

@@ -21,7 +21,7 @@ struct Food: Identifiable {
 
 struct FoodLists {
     static let lists: [Food] = [
-        Food(name: "Kue Tete", image: "Kue-Tete", type: FoodTypeLists.lists[4], origin: [FoodOriginLists.lists[0], FoodOriginLists.lists[1]], cookProcesses: FoodProcessesList.lists[5], taste: [FoodTasteLists.lists[0]], ingredient: [FoodIngredientLists.lists[0], FoodIngredientLists.lists[1], FoodIngredientLists.lists[2]]),
+        Food(name: "Kue Ape", image: "Kue-Ape", type: FoodTypeLists.lists[4], origin: [FoodOriginLists.lists[0], FoodOriginLists.lists[1]], cookProcesses: FoodProcessesList.lists[5], taste: [FoodTasteLists.lists[0]], ingredient: [FoodIngredientLists.lists[0], FoodIngredientLists.lists[1], FoodIngredientLists.lists[2]]),
         Food(name: "Gulai Siput", image: "Gulai-Siput", type: FoodTypeLists.lists[0], origin: [FoodOriginLists.lists[0]], cookProcesses: FoodProcessesList.lists[1], taste: [FoodTasteLists.lists[5]], ingredient: [FoodIngredientLists.lists[3], FoodIngredientLists.lists[2], FoodIngredientLists.lists[4], FoodIngredientLists.lists[5]]),
         Food(name: "Papeda", image: "Papeda", type: FoodTypeLists.lists[0], origin: [FoodOriginLists.lists[2], FoodOriginLists.lists[0]], cookProcesses: FoodProcessesList.lists[1], taste: [FoodTasteLists.lists[3]], ingredient: [FoodIngredientLists.lists[6], FoodIngredientLists.lists[7], FoodIngredientLists.lists[4]]),
         Food(name: "Rambut Nenek", image: "Rambut-Nenek", type: FoodTypeLists.lists[4], origin: [FoodOriginLists.lists[0]], cookProcesses: FoodProcessesList.lists[5], taste: [FoodTasteLists.lists[0]], ingredient: [FoodIngredientLists.lists[8], FoodIngredientLists.lists[9]]),

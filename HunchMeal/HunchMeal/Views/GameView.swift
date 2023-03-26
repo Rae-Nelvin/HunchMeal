@@ -11,6 +11,10 @@ struct GameView: View {
     @StateObject var gbvm = GameBoardViewModel()
     @State private var showLandingPage = false
     private let columns: [GridItem] = Array(repeating: .init(.fixed(90)), count: 4)
+    @State var showLargeCard: Bool = false
+    @State var selectedFood: Food?
+    @State var showRulesView: Bool = false
+    @State var showExitConfirmation: Bool = false
     
     // for passing Food objects to End View
     @State var win: Bool = true
@@ -24,25 +28,47 @@ struct GameView: View {
                 VStack() {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(gbvm.foodDatas, id: \.id) { food in
-                            VStack {
-                                SmallCardView(photo: food.image)
-                            }
+                            SmallCardView(gbvm: gbvm, food: food, showLargeCard: $showLargeCard)
+                                .onLongPressGesture(minimumDuration: 1.0, perform: {
+                                    selectedFood = food
+                                    if selectedFood?.isElim != true {
+                                        showLargeCard = true
+                                    }
+                                })
+                                .sheet(isPresented: $showLargeCard) {
+                                    LargeCardView(food: $selectedFood)
+                                        .onTapGesture {
+                                            showLargeCard = false
+                                        }
+                                }
                         }
                     }
                     .padding(EdgeInsets(top: 25, leading: 0, bottom: 0, trailing: 0))
-                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage, showTimerButton: true, showHintButton: true)
-                    HStack(alignment: .bottom){
-                        VStack(alignment: .leading){
-                            Text("Turn \(String(format: "%02d", gbvm.totalGuess + 1))")
-                                .font(.system(size:32, design: .rounded).weight(.bold))
-                                .foregroundColor(Color("Yellow"))
-                            AskQuestionButton()
-                        }
-                        Image("SusCat")
-                            .resizable()
-                            .frame(width: 122, height: 160)
-                    }
+                    CustomNavigationBar(gbvm: gbvm,showLandingPage: $showLandingPage, showRulesView: $showRulesView, showExitConfirmation: $showExitConfirmation)
+                    BottomPartGameView()
+                        .environmentObject(gbvm)
                 }
+                .overlay(
+                    Group {
+                        if gbvm.isShowQuestionLayout {
+                            QuestionLayout()
+                                .environmentObject(gbvm)
+                                .onTapGesture {
+                                    gbvm.isShowQuestionLayout = false
+                                }
+                        } else if showRulesView {
+                            RulesView()
+                                .onTapGesture {
+                                    showRulesView = false
+                                }
+                                .edgesIgnoringSafeArea(.all)
+                        } else if showExitConfirmation {
+                            ExitConfirmation(showLandingPage: $showLandingPage, showExitConfirmation: $showExitConfirmation)
+                                .edgesIgnoringSafeArea(.all)
+                        }
+                    }
+                )
+                .scaledToFit()
             }
         }
         .padding()
@@ -58,28 +84,62 @@ struct GameView_Previews: PreviewProvider {
 }
 
 struct SmallCardView: View {
-    var photo: String
+    @StateObject var gbvm: GameBoardViewModel
+    let food: Food
+    @Binding var showLargeCard: Bool
     
     var body: some View {
         HStack(){
-            Image(photo)
-                .resizable()
+            if !food.isElim {
+                Image(food.image)
+                    .resizable()
+                    .padding(6)
+                    .frame(width: 66.75, height: 89)
+                    .background(Color("LightYellow"))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color("Purple"), lineWidth: 4))
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            gbvm.eliminateCard(food: food)
+                        }
+                    }
+                    .rotation3DEffect(.degrees(food.isElim ? 180 : 0), axis: (x: 0, y:1, z:0))
+            } else {
+                VStack {
+                }
                 .padding(6)
                 .frame(width: 66.75, height: 89)
                 .background(Color("LightYellow"))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color("Purple"), lineWidth: 4))
-                .onLongPressGesture(minimumDuration: 2){
-                    print("tapped")
-                }
+                .rotation3DEffect(.degrees(food.isElim ? 180 : 0), axis: (x: 0, y:1, z:0))
+            }
         }
+    }
+}
+
+struct LargeCardView: View {
+    @Binding var food: Food?
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.8)
+            Image(food?.image ?? "")
+                .resizable()
+                .background(Color("LightYellow"))
+        }
+        .cornerRadius(40)
+        .padding(40)
     }
 }
 
 struct CustomNavigationBar: View{
     @StateObject var gbvm: GameBoardViewModel
     @Binding var showLandingPage: Bool
+    @Binding var showRulesView: Bool
+    @Binding var showExitConfirmation: Bool
     var showTimerButton: Bool
     var showHintButton: Bool
     // Nanti kl uda ada logic menangnya, passing status true/false ya buat endView
@@ -89,24 +149,20 @@ struct CustomNavigationBar: View{
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button (action: {
-                        showLandingPage = true
+                        showExitConfirmation = true
                     }){
                         CustomNavigationToolBarImage(image: "arrow.left.square.fill")
                     }
                 }
-                if showTimerButton {
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button(action: {
-                            print("Question Tapped")
-                        }){
-                            CustomNavigationToolBarImage(image: "questionmark.square.fill")
-                        }
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {
+                        showRulesView = true
+                    }){
+                        CustomNavigationToolBarImage(image: "questionmark.square.fill")
                     }
                 }
-                if showHintButton {
-                    ToolbarItem(placement: .principal){
-                        CustomToolBarCountdownTimer(gbvm: gbvm)
-                    }
+                ToolbarItem(placement: .principal){
+                    CustomToolBarCountdownTimer(gbvm: gbvm)
                 }
             }
             .navigationBarBackButtonHidden(true)
@@ -146,16 +202,57 @@ struct CustomToolBarCountdownTimer: View {
     }
 }
 
-struct AskQuestionButton: View {
+struct RulesView: View {
+    let rules: [Rules] = RulesList.lists
+    
     var body: some View {
-        Button (action: {
-            print("Ask a question tapped")
-        }){
-            Text("Ask a Question")
-                .font(.system(size: 16, design: .rounded).weight(.bold))
-                .frame(width: 204, height: 51)
-                .foregroundColor(Color("Yellow"))
-                .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+        ZStack {
+            Color.yellow
+            VStack {
+                Text("Rules of the Game")
+                VStack(alignment: .leading, spacing: 10) {
+                    ForEach(Array(rules.enumerated()), id: \.1) { index, rule in
+                        Text("\(index + 1). \(rule.rules)")
+                    }
+                }
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 140, leading: 20, bottom: 0, trailing: 20))
+        }
+    }
+}
+
+struct ExitConfirmation: View {
+    @Binding var showLandingPage: Bool
+    @Binding var showExitConfirmation: Bool
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.8)
+            VStack {
+                VStack {
+                    Text("Are you sure you want to exit?")
+                    Text("All of your progress will be resetted")
+                }
+                HStack(spacing: 40) {
+                    Text("Dismiss")
+                        .font(.system(size: 16, design: .rounded).weight(.bold))
+                        .padding(20)
+                        .foregroundColor(Color("Yellow"))
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                        .onTapGesture {
+                            showExitConfirmation = false
+                        }
+                    Text("Exit")
+                        .font(.system(size: 16, design: .rounded).weight(.bold))
+                        .padding(20)
+                        .foregroundColor(Color("Yellow"))
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(Color("Yellow"), lineWidth: 4))
+                        .onTapGesture {
+                            showLandingPage = true
+                        }
+                }
+            }
         }
     }
 }
