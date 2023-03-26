@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 final class GameBoardViewModel: ObservableObject {
-    @Published var isWin: Bool = false
+    @Published var isWin: String = ""
     @Published var totalGuess: Int = 0
     @Published var chosenQuestion: [Question] = []
     @Published var foodDatas: [Food]
@@ -113,13 +113,11 @@ final class GameBoardViewModel: ObservableObject {
         }
         
         if ((secondsRemaining == 0 && count < foodDatas.count) || (secondsRemaining == 0 && checkAnswer() == false) || (count == foodDatas.count - 1 && checkAnswer() == false)) {
-            print("You Lose")
-            isWin = false
+            isWin = "Lose"
             stopTimer()
         }
         if (count == foodDatas.count - 1 && checkAnswer() == true) {
-            print("You Win")
-            isWin = true
+            isWin = "Win"
             stopTimer()
         }
     }
@@ -263,5 +261,9 @@ final class GameBoardViewModel: ObservableObject {
         }
         
         return false
+    }
+    
+    func countSpentTime(secondsRemaing: Int, totalTime: Int) -> Int{
+        return totalTime - secondsRemaing
     }
 }

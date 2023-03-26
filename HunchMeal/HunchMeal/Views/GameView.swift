@@ -24,7 +24,7 @@ struct GameView: View {
             BackgroundYellowCircle()
             if showLandingPage{
                 HunchMealView()
-            } else if gbvm.isWin {
+            } else if gbvm.isWin != "" {
                 EndView()
                     .environmentObject(gbvm)
             } else {
