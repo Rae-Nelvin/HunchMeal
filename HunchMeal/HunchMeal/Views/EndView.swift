@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EndView: View {
     @EnvironmentObject var gbvm: GameBoardViewModel
-//    @ObservedObject var egvm: EndGameViewModel
     @State private var showLandingPage = false
     // timer, win status, question asked, Food object
     
@@ -42,10 +41,7 @@ struct EndView: View {
                                     .stroke(Color("Purple"), lineWidth: 4)
                             )
                         // based on winning status of the user
-                        if true {
-                            // parameter dibind sm winning status
-                            catView(win: gbvm.isWin)
-                        }
+                        catView(win: gbvm.isWin)
                     }
                 }
                 Spacer(minLength: -90)
@@ -83,7 +79,7 @@ struct EndView: View {
                             .foregroundColor(Color(.white))
                             .padding(.bottom, 4)
 
-                        Text("15:00")
+                        Text("\(gbvm.countSpentTime(secondsRemaing:gbvm.secondsRemaining, totalTime: 300) / 60) : \(String(format: "%02d", gbvm.countSpentTime(secondsRemaing:gbvm.secondsRemaining, totalTime: 300) % 60))")
                             .font(.system(size: 32, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
                     }
@@ -215,10 +211,10 @@ struct EndView_Previews: PreviewProvider {
 }
 
 struct catView: View{
-    var win: Bool
+    var win: String
     
     var body: some View {
-        if win{
+        if win == "Win" {
             Image("WinCat")
                 .resizable()
                 .frame(width: 193, height: 140)
