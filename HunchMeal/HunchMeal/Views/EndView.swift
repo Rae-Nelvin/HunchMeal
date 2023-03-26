@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct EndView: View {
+    @EnvironmentObject var gbvm: GameBoardViewModel
+//    @ObservedObject var egvm: EndGameViewModel
     @State private var showLandingPage = false
-    @State var showRulesView: Bool = false
-    @State var showExitConfirmation: Bool = false
     // timer, win status, question asked, Food object
     
     var body: some View {
@@ -21,10 +21,8 @@ struct EndView: View {
                     if showLandingPage{
                         HunchMealView()
                     } else {
-                        CustomNavigationBar(gbvm: GameBoardViewModel(), showLandingPage: $showLandingPage, showRulesView: $showRulesView, showExitConfirmation: $showExitConfirmation, showTimer: false, showHintButton: false)
-                        
                         // Name of Food object
-                        Text("Es Pisang Hijau")
+                        Text(gbvm.foodAnswer.name)
                             .font(.system(size: 24, design: .rounded).weight(.bold))
                             .frame(width: 267, height: 70)
                             .foregroundColor(Color("Purple"))
@@ -35,7 +33,7 @@ struct EndView: View {
                             .offset(y: 165)
                         
                         // Image of Food object
-                        Image("Es-Pisang-Ijo")
+                        Image(gbvm.foodAnswer.image)
                             .resizable()
                             .frame(width: 267, height: 280)
                             .background(Color("LightYellow"))
@@ -43,15 +41,12 @@ struct EndView: View {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color("Purple"), lineWidth: 4)
                             )
-                        
                         // based on winning status of the user
                         if true {
                             // parameter dibind sm winning status
-                            catView(win: true)
+                            catView(win: gbvm.isWin)
                         }
-
                     }
-
                 }
                 Spacer(minLength: -90)
             }
@@ -69,7 +64,7 @@ struct EndView: View {
                             .foregroundColor(Color(.white))
                             .padding(.bottom, 4)
 
-                        Text("07")
+                        Text("\(gbvm.totalGuess)")
                             .font(.system(size: 32, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
                     }
@@ -100,7 +95,7 @@ struct EndView: View {
                     .padding()
 
                 }
-                Text("Es Pisang Hijau")
+                Text(gbvm.foodAnswer.name)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 48, design: .rounded).weight(.bold))
                     .foregroundColor(Color("Yellow"))
@@ -113,7 +108,7 @@ struct EndView: View {
                             .foregroundColor(Color("Yellow"))
                         
                         // Taste of Food object
-                        Text("Dessert")
+                        Text(gbvm.foodAnswer.type.type)
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .frame(width: 90, height: 35)
                             .foregroundColor(Color("Purple"))
@@ -127,22 +122,31 @@ struct EndView: View {
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
                         
-                        // Nanti pake LazyHGrid aja le
-                        HStack(){
-                            // Taste of Food object
-                            Text("Tasty")
-                                .font(.system(size: 16, design: .rounded).weight(.bold))
-                                .frame(width: 90, height: 35)
-                                .foregroundColor(Color("Purple"))
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-                            
-                            Text("Tasty")
-                                .font(.system(size: 16, design: .rounded).weight(.bold))
-                                .frame(width: 90, height: 35)
-                                .foregroundColor(Color("Purple"))
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-
+                        LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())]) {
+                            ForEach(gbvm.foodAnswer.taste, id: \.id) { taste in
+                                Text(taste.taste)
+                                    .font(.system(size: 16, design: .rounded).weight(.bold))
+                                    .frame(width: 90, height: 35)
+                                    .foregroundColor(Color("Purple"))
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+                            }
                         }
+//                        // Nanti pake LazyHGrid aja le
+//                        HStack(){
+//                            // Taste of Food object
+//                            Text("Tasty")
+//                                .font(.system(size: 16, design: .rounded).weight(.bold))
+//                                .frame(width: 90, height: 35)
+//                                .foregroundColor(Color("Purple"))
+//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+//
+//                            Text("Tasty")
+//                                .font(.system(size: 16, design: .rounded).weight(.bold))
+//                                .frame(width: 90, height: 35)
+//                                .foregroundColor(Color("Purple"))
+//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+//
+//                        }
 
                     }
                 }
@@ -155,7 +159,7 @@ struct EndView: View {
                             .foregroundColor(Color("Yellow"))
                         
                         // Process of Food object
-                        Text("Freezed")
+                        Text(gbvm.foodAnswer.cookProcesses.process)
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .frame(width: 90, height: 35)
                             .foregroundColor(Color("Purple"))
@@ -169,21 +173,31 @@ struct EndView: View {
                             .font(.system(size: 16, design: .rounded).weight(.bold))
                             .foregroundColor(Color("Yellow"))
                         
-                        HStack(){
-                            // Ingredients of Food object
-                            Text("Fruits")
-                                .font(.system(size: 16, design: .rounded).weight(.bold))
-                                .frame(width: 90, height: 35)
-                                .foregroundColor(Color("Purple"))
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-                            
-                            Text("Dairy")
-                                .font(.system(size: 16, design: .rounded).weight(.bold))
-                                .frame(width: 90, height: 35)
-                                .foregroundColor(Color("Purple"))
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
-
+                        LazyHGrid(rows: [GridItem(.flexible()), GridItem(.flexible())]) {
+                            ForEach(gbvm.foodAnswer.ingredient, id: \.id) { ingredient in
+                                Text(ingredient.ingredient)
+                                    .font(.system(size: 16, design: .rounded).weight(.bold))
+                                    .frame(width: 90, height: 35)
+                                    .foregroundColor(Color("Purple"))
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+                            }
                         }
+                        
+//                        HStack(){
+//                            // Ingredients of Food object
+//                            Text("Fruits")
+//                                .font(.system(size: 16, design: .rounded).weight(.bold))
+//                                .frame(width: 90, height: 35)
+//                                .foregroundColor(Color("Purple"))
+//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+//
+//                            Text("Dairy")
+//                                .font(.system(size: 16, design: .rounded).weight(.bold))
+//                                .frame(width: 90, height: 35)
+//                                .foregroundColor(Color("Purple"))
+//                                .background(RoundedRectangle(cornerRadius: 10).fill(Color("Yellow")))
+//
+//                        }
 
                     }
                 }
