@@ -12,6 +12,9 @@ struct GameView: View {
     @State private var showLandingPage = false
     private let columns: [GridItem] = Array(repeating: .init(.fixed(90)), count: 4)
     
+    // for passing Food objects to End View
+    @State var win: Bool = true
+    
     var body: some View {
         ZStack(){
             BackgroundYellowCircle()
@@ -79,6 +82,7 @@ struct CustomNavigationBar: View{
     @Binding var showLandingPage: Bool
     var showTimerButton: Bool
     var showHintButton: Bool
+    // Nanti kl uda ada logic menangnya, passing status true/false ya buat endView
     
     var body: some View {
         NavigationLink("", destination: HunchMealView())
