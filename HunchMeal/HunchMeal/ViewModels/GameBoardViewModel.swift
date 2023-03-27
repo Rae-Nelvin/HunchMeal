@@ -49,31 +49,33 @@ final class GameBoardViewModel: ObservableObject {
         var question: Question = Question(part1: "", part2: "")
         
         if (flag > 0) {
-            flag -= 1
-            repeat {
-                randomNumber = Int.random(in: 1...5)
-                switch randomNumber {
-                case 1:
-                    question = Question(part1: "Is this food type of", part2: foodAnswer.type.type)
-                    break
-                case 2:
-                    question = Question(part1: "Is this food came from", part2: "\(getRandomFoodOrigin(lists: foodAnswer.origin).origin)")
-                    break
-                case 3:
-                    question = Question(part1: "Is this food made by", part2: foodAnswer.cookProcesses.process)
-                    break
-                case 4:
-                    question = Question(part1: "Is this food taste", part2: "\(getRandomFoodTaste(lists: foodAnswer.taste).taste)")
-                    break
-                case 5:
-                    question = Question(part1: "Is one of this food ingredient a", part2: "\(getRandomFoodIngredient(lists: foodAnswer.ingredient).ingredient)")
-                    break
-                default:
-                    break
-                }
-            }  while (checkQuestion(question: question) == true)
-            questions.append(question)
-            print(question)
+            for _ in 0..<2 {
+                flag -= 1
+                repeat {
+                    randomNumber = Int.random(in: 1...5)
+                    switch randomNumber {
+                    case 1:
+                        question = Question(part1: "Is this food type of", part2: foodAnswer.type.type)
+                        break
+                    case 2:
+                        question = Question(part1: "Is this food came from", part2: "\(getRandomFoodOrigin(lists: foodAnswer.origin).origin)")
+                        break
+                    case 3:
+                        question = Question(part1: "Is this food made by", part2: foodAnswer.cookProcesses.process)
+                        break
+                    case 4:
+                        question = Question(part1: "Is this food taste", part2: "\(getRandomFoodTaste(lists: foodAnswer.taste).taste)")
+                        break
+                    case 5:
+                        question = Question(part1: "Is one of this food ingredient a", part2: "\(getRandomFoodIngredient(lists: foodAnswer.ingredient).ingredient)")
+                        break
+                    default:
+                        break
+                    }
+                }  while (checkQuestion(question: question) == true)
+                questions.append(question)
+            }
+            
         }
         getAmountRandomQuestions()
         
@@ -166,7 +168,7 @@ final class GameBoardViewModel: ObservableObject {
     private func getAmountRandomQuestions() {
         var question: Question = Question(part1: "", part2: "")
         if(flag > 0) {
-            for _ in 0..<3 {
+            for _ in 0..<2 {
                 repeat {
                     let randomNumber = Int.random(in: 1...5)
                     question = getRandomQuestions(randomNumber: randomNumber)

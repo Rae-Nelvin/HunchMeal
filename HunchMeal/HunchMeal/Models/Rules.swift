@@ -19,7 +19,7 @@ struct RulesList {
         Rules(rules: "Single tap on a card to eliminate the food which is not the correct food. But BEWARE! Once you eliminate the card, you can't have it back"),
         Rules(rules: "You can long press each of the cards to view the name of the food and see the image more clearly"),
         Rules(rules: "You may tap \("Ask Question") button to help you find the food you can ask questions to our bot and it will answer if the food compatible with what question you asked"),
-        Rules(rules: "However, there're 4 questions, which with minimum of 1 is compatible with the correct food."),
+        Rules(rules: "However, there're 4 questions, which with minimum of 2 is compatible with the correct food."),
         Rules(rules: "Last rules, have fun and keep that smile of yours :)")
     ]
 }

@@ -27,7 +27,7 @@ struct EndView: View {
                     }
                     Spacer(minLength: 90)
                     VStack {
-                        TextWinningView(win: false)
+                        TextWinningView(win: gbvm.isWin)
                         HStack(){
                             PlayerStatus(gbvm: gbvm, isTime: false, title: "Question Asked")
                             PlayerStatus(gbvm: gbvm, isTime: true, title: "Total \n Time")
@@ -102,7 +102,7 @@ struct CatView: View{
                 .frame(width: 193, height: 140)
                 .offset(x: 150, y: 130)
         } else {
-            Image("Cat-Head-Smug")
+            Image("Cat-Head-Frustrated")
                 .resizable()
                 .frame(width: 193, height: 140)
                 .offset(x: 150, y: 130)
@@ -111,10 +111,10 @@ struct CatView: View{
 }
 
 struct TextWinningView: View{
-    var win: Bool
+    var win: String
     
     var body: some View {
-        if win{
+        if win == "Win"{
             Text("You Figured\nIt Out!")
                 .multilineTextAlignment(.center)
                 .font(.system(size: 48, design: .rounded).weight(.bold))

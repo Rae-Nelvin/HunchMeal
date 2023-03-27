@@ -75,7 +75,7 @@ struct ForEachFood: View {
     var body: some View {
         ForEach(gbvm.foodDatas, id: \.id) { food in
             SmallCardView(gbvm: gbvm, food: food, showLargeCard: $showLargeCard)
-                .onLongPressGesture(minimumDuration: 1.0, perform: {
+                .onLongPressGesture(minimumDuration: 0.1, perform: {
                     selectedFood = food
                     if selectedFood?.isElim != true {
                         showLargeCard = true
@@ -187,10 +187,10 @@ struct LargeCardView: View {
                     .font(.system(size: 24, design: .rounded).weight(.bold))
                     .foregroundColor(Color("Purple"))
                     .frame(height: 80)
+                    .padding(.bottom, 50)
             }
         }
-        .cornerRadius(40)
-        .padding(40)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

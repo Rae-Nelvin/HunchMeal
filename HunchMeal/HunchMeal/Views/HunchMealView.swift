@@ -13,6 +13,7 @@ struct HunchMealView: View {
             ZStack() {
                 BackgroundYellowCircle()
                 VStack{
+                    Spacer()
                     TitleText(text: "Hunch")
                     TitleText(text: "Meal")
                     NavigationLink(destination: GameView()){
@@ -59,12 +60,13 @@ struct ButtonText: View {
     let text: String
     
     var body: some View {
-        Text(text)
-            .font(.system(size:36, design: .rounded).weight(.bold))
-            .frame(width: 146, height: 146)
-            .foregroundColor(Color("Yellow"))
-            .background(Color("Purple"))
-            .clipShape(Circle())
-            .offset(y: -21)
+        ZStack() {
+            Image("Detective-Title")
+            Text(text)
+                .font(.system(size:36, design: .rounded).weight(.bold))
+                .foregroundColor(Color("Yellow"))
+                .background(Color("Purple"))
+        }
+        .offset(y: -100)
     }
 }
