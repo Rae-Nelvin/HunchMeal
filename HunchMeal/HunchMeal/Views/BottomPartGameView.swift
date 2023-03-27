@@ -125,10 +125,11 @@ struct AskedBottomPartView: View {
     var body: some View {
         HStack(alignment: .center){
             BotAnswerView(gbvm: gbvm)
-            Spacer()
-            Image("SusCat")
+            Spacer(minLength: 88)
+            Image("Cat-Thief-Room")
                 .resizable()
-                .frame(width: 122, height: 160)
+                .frame(width: 115, height: 198)
+                .offset(y: 10)
         }
         .scaledToFit()
     }

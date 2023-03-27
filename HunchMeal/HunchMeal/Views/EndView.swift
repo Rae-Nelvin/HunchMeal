@@ -29,8 +29,8 @@ struct EndView: View {
                     VStack {
                         TextWinningView(win: false)
                         HStack(){
-                            PlayerStatus(gbvm: gbvm, isTime: false, title: "Total \n Time")
-                            PlayerStatus(gbvm: gbvm, isTime: true, title: "Question Asked")
+                            PlayerStatus(gbvm: gbvm, isTime: false, title: "Question Asked")
+                            PlayerStatus(gbvm: gbvm, isTime: true, title: "Total \n Time")
                         }
                         SecondFoodName(gbvm: gbvm)
                         FoodAnswerDetails(gbvm: gbvm)

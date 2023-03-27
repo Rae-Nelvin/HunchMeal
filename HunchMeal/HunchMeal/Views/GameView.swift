@@ -324,7 +324,7 @@ struct ExitConfirmation: View {
                 ExitConfirmationTitle(text: "Give up and return\nto main menu?")
                 HStack(spacing: 40) {
                     ExitConfirmationCancelButton(showExitConfirmation: $showExitConfirmation)
-                    ExitConfirmationGiveUpButton(showLandingPage: $showExitConfirmation)
+                    ExitConfirmationGiveUpButton(showLandingPage: $showLandingPage)
                 }
                 .padding(.top, 25)
             }
