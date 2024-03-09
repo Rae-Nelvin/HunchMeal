@@ -49,7 +49,7 @@ final class GameBoardViewModel: ObservableObject {
         var question: Question = Question(part1: "", part2: "")
         
         if (flag > 0) {
-            for _ in 0..<2 {
+            for _ in 0..<1 {
                 flag -= 1
                 repeat {
                     randomNumber = Int.random(in: 1...5)
@@ -75,7 +75,6 @@ final class GameBoardViewModel: ObservableObject {
                 }  while (checkQuestion(question: question) == true)
                 questions.append(question)
             }
-            
         }
         getAmountRandomQuestions()
         
@@ -168,7 +167,7 @@ final class GameBoardViewModel: ObservableObject {
     private func getAmountRandomQuestions() {
         var question: Question = Question(part1: "", part2: "")
         if(flag > 0) {
-            for _ in 0..<2 {
+            for _ in 0..<3 {
                 repeat {
                     let randomNumber = Int.random(in: 1...5)
                     question = getRandomQuestions(randomNumber: randomNumber)

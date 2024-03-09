@@ -19,9 +19,6 @@
 		15DB121029C9BF6000333F16 /* HunchMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB120F29C9BF6000333F16 /* HunchMealView.swift */; };
 		15DB121229C9BF6100333F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB121129C9BF6100333F16 /* Assets.xcassets */; };
 		15DB121529C9BF6100333F16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15DB121429C9BF6100333F16 /* Preview Assets.xcassets */; };
-		15DB121F29C9BF6100333F16 /* HunchMealTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB121E29C9BF6100333F16 /* HunchMealTests.swift */; };
-		15DB122929C9BF6100333F16 /* HunchMealUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB122829C9BF6100333F16 /* HunchMealUITests.swift */; };
-		15DB122B29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */; };
 		15E2B8FB29CD8721000BB713 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E2B8FA29CD8721000BB713 /* Rules.swift */; };
 		15FEF4CC29CEF0DB00A16A15 /* BottomPartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FEF4CB29CEF0DB00A16A15 /* BottomPartGameView.swift */; };
 		268B098329CE8D29000771AC /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B098229CE8D29000771AC /* EndView.swift */; };
@@ -60,10 +57,7 @@
 		15DB121129C9BF6100333F16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15DB121429C9BF6100333F16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15DB121A29C9BF6100333F16 /* HunchMealTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		15DB121E29C9BF6100333F16 /* HunchMealTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealTests.swift; sourceTree = "<group>"; };
 		15DB122429C9BF6100333F16 /* HunchMealUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HunchMealUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		15DB122829C9BF6100333F16 /* HunchMealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITests.swift; sourceTree = "<group>"; };
-		15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HunchMealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		15E2B8FA29CD8721000BB713 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		15FEF4CB29CEF0DB00A16A15 /* BottomPartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPartGameView.swift; sourceTree = "<group>"; };
 		268B098229CE8D29000771AC /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
@@ -133,8 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				15DB120C29C9BF6000333F16 /* HunchMeal */,
-				15DB121D29C9BF6100333F16 /* HunchMealTests */,
-				15DB122729C9BF6100333F16 /* HunchMealUITests */,
 				15DB120B29C9BF6000333F16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -168,23 +160,6 @@
 				15DB121429C9BF6100333F16 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		15DB121D29C9BF6100333F16 /* HunchMealTests */ = {
-			isa = PBXGroup;
-			children = (
-				15DB121E29C9BF6100333F16 /* HunchMealTests.swift */,
-			);
-			path = HunchMealTests;
-			sourceTree = "<group>";
-		};
-		15DB122729C9BF6100333F16 /* HunchMealUITests */ = {
-			isa = PBXGroup;
-			children = (
-				15DB122829C9BF6100333F16 /* HunchMealUITests.swift */,
-				15DB122A29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift */,
-			);
-			path = HunchMealUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +313,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15DB121F29C9BF6100333F16 /* HunchMealTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,8 +320,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15DB122B29C9BF6100333F16 /* HunchMealUITestsLaunchTests.swift in Sources */,
-				15DB122929C9BF6100333F16 /* HunchMealUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
