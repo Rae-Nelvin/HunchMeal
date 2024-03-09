@@ -8,11 +8,11 @@ This SwiftUI project implements a mobile game inspired by the classic "Guess Who
 
 - [Installation](#installation)
 
-  - [Prerequisites](#prerequisites)
+    - [Prerequisites](#prerequisites)
 
-  - [Clone the Repository](#clone-the-repository)
+    - [Clone the Repository](#clone-the-repository)
 
-  - [Build and Run](#build-and-run)
+    - [Build and Run](#build-and-run)
 
 - [Contributing](#contributing)
 
