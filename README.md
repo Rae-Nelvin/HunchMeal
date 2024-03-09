@@ -74,10 +74,10 @@ git clone https://github.com/Rae-Nelvin/HunchMeal.git
 
 ## Contributing
 
-Since it's just a prototype project, I don't expect any contributions to Recipere.
+Since it's just a prototype project, I don't expect any contributions to HunchMeal.
 
-Thank you for choosing Recipere! If you encounter any issues or have suggestions for improvements, please don't hesitate to [create an issue](https://github.com/Rae-Nelvin/Recipere/issues). We look forward to your feedback.
+Thank you for choosing HunchMeal! If you encounter any issues or have suggestions for improvements, please don't hesitate to [create an issue](https://github.com/Rae-Nelvin/HunchMeal/issues). We look forward to your feedback.
 
 ## License
 
-ProjectName is licensed under the [MIT License](LICENSE).
+HunchMeal is licensed under the [MIT License](LICENSE).
